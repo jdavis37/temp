@@ -78,8 +78,6 @@ public class PlayerController : Character
     // Text for use with UI. Not currently Used.
     public Text attackStateUI;
     // Text for use with UI. Not currently Used.
-    public Text PlayerHealthUI;
-    // Text for use with UI. Not currently Used.
     public Text WeaponTextUI;
 
     // Timer for time player is unable to be hurt after taking damage
@@ -160,8 +158,6 @@ public class PlayerController : Character
             Jump();
             GravControl();
         }
-        
-
     }
 
     /**
