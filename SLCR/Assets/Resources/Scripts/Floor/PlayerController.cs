@@ -665,7 +665,11 @@ public class PlayerController : Character
                 health = 0;
                 iFrames = savingFrames;
             }
-
+            else if (health + change > maxHealth + 1)
+            {
+                health = maxHealth;
+                iFrames = savingFrames;
+            }
             else
             {
                 health = health + change;
