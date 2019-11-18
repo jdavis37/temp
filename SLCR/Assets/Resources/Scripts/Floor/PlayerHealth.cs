@@ -20,14 +20,32 @@ public class PlayerHealth : PlayerController
     // Update is called once per frame
     public override void Update()
     {
+        
+    }
+
+    /**
+   * @pre: N/A.
+   * @post: {hysics related requirements should be parsed.
+   * @param: None.
+   * @return: None.
+   */
+    public override void FixedUpdate()
+    {
         if (health < maxHealth && health > 0)
         {
             if (startHealing)
             {
                 HealPlayer();
-                if (!(health < maxHealth))
+                if (health >= maxHealth)
                 {
-                    HealPlayer();
+                    startHealing = false;
+                }
+            }
+            else
+            {
+                if (iFrames <= 0)
+                {
+                    startHealing = true;
                 }
             }
         }
@@ -35,6 +53,9 @@ public class PlayerHealth : PlayerController
 
     public void HealPlayer()
     {
+        ChangeHealth(1, iFrames);
+        healthBar.UpdateBar(health, maxHealth);
+        /*
         float increment = 1;
 
         if (tick % 20 == 0)
@@ -54,5 +75,6 @@ public class PlayerHealth : PlayerController
         }
 
         tick += 1;
+        */
     }
 }
