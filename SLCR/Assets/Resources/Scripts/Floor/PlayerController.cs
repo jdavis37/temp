@@ -83,9 +83,12 @@ public class PlayerController : Character
     // Timer for time player is unable to be hurt after taking damage
     public int iFrames;
 
+    public SimpleHealthBar healthBar;
+
     // Use this for initialization
     public override void Start()
     {
+        healthBar.UpdateBar(health, maxHealth);
         base.Start();
         base.Start();
         jumpsRemaining = maxJump;
@@ -158,6 +161,7 @@ public class PlayerController : Character
             Jump();
             GravControl();
         }
+        GunID();
     }
 
     /**
@@ -177,7 +181,11 @@ public class PlayerController : Character
             rb.AddForce(Physics.gravity * 2);
 
         }
-        
+
+        if (health < maxHealth && health > 0)
+        {
+            HealPlayer();
+        }
     }
 
     /**
@@ -641,7 +649,10 @@ public class PlayerController : Character
                 health = 0;
                 iFrames = 50;
             }
-
+            else if (health + change >= maxHealth)
+            {
+                health = maxHealth;
+            }
             else
             {
                 health = health + change;
@@ -665,7 +676,7 @@ public class PlayerController : Character
                 health = 0;
                 iFrames = savingFrames;
             }
-            else if (health + change > maxHealth + 1)
+            else if (health + change >= maxHealth)
             {
                 health = maxHealth;
                 iFrames = savingFrames;
@@ -693,8 +704,22 @@ public class PlayerController : Character
         }      
     }
 
+    public void HealPlayer()
+    {
+        ChangeHealth(1);
+        healthBar.UpdateBar(health, maxHealth);
+    }
 
-
+    public void GunID()
+    {
+        if(defaultWeapon.baseFireRate >=250 && defaultWeapon.baseFireRate < 350)
+        {
+            if (defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
+            {
+                WeaponTextUI.text = "Automatic Rifle";
+            }
+        }
+    }
 }
 
 
