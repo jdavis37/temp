@@ -486,8 +486,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxJump: 2
-  health: 300
-  maxHealth: 300
+  health: 100
+  maxHealth: 100
   hit: 0
   speed: 10
   rb: {fileID: 0}
