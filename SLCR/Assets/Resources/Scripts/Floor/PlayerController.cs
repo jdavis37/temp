@@ -161,6 +161,7 @@ public class PlayerController : Character
             Jump();
             GravControl();
         }
+        GunID();
     }
 
     /**
@@ -710,10 +711,13 @@ public class PlayerController : Character
     }
 
     public void GunID()
-    { 
-        if(defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
+    {
+        if(defaultWeapon.baseFireRate >=250 && defaultWeapon.baseFireRate < 350)
         {
-            WeaponTextUI = "rifle";
+            if (defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
+            {
+                WeaponTextUI.text = "Automatic Rifle";
+            }
         }
     }
 }
