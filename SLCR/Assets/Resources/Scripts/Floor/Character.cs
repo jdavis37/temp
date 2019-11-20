@@ -41,10 +41,12 @@ public class Character : MonoBehaviour {
    */
     public virtual void Update ()
     {
+        /*
         if (health == 0)
         {
             Object.Destroy(gameObject);
         }
+        */
 
         if (hit)
         {

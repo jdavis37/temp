@@ -85,9 +85,14 @@ public class PlayerController : Character
 
     public SimpleHealthBar healthBar;
 
+    public GameObject PauseMenu;
+    public GameObject GameOverScreen;
+
     // Use this for initialization
     public override void Start()
     {
+        GameOverScreen.SetActive(false);
+        PauseMenu.SetActive(false);
         healthBar.UpdateBar(health, maxHealth);
         base.Start();
         base.Start();
@@ -182,9 +187,22 @@ public class PlayerController : Character
 
         }
 
-        if (health < maxHealth && health > 0)
+        if (health > 0)
         {
             HealPlayer();
+        }
+        else
+        {
+            healthBar.UpdateBar(0, maxHealth);
+            GameOverScreen.SetActive(true);
+            rb = null;
+            tr = null;
+            defaultWeapon = null;
+            equipedWeapon = null;
+            secondWeapon = null;
+            thirdWeapon = null;
+            cam = null;
+            //Time.timeScale = 0.0f;
         }
     }
 
@@ -378,14 +396,17 @@ public class PlayerController : Character
    */
     void Jump()
     {
-        if (Input.GetAxis("Jump") > 0 && jumpHeld == 0)
+        if (rb != null)
         {
-            if (jumpsRemaining > 0)
+            if (Input.GetAxis("Jump") > 0 && jumpHeld == 0)
             {
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                rb.AddForce(new Vector3(0, jumpForce ,0));
-                grounded = false;
-                jumpsRemaining--;
+                if (jumpsRemaining > 0)
+                {
+                    rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                    rb.AddForce(new Vector3(0, jumpForce, 0));
+                    grounded = false;
+                    jumpsRemaining--;
+                }
             }
         }
     }
@@ -423,7 +444,8 @@ public class PlayerController : Character
    */
     public void Movement(float forwardBack, float leftRight)
     {
-        rb.velocity = new Quaternion(0,rb.rotation.y,0,rb.rotation.w) * new Vector3(leftRight, rb.velocity.y, forwardBack);
+        if (rb != null)
+            rb.velocity = new Quaternion(0,rb.rotation.y,0,rb.rotation.w) * new Vector3(leftRight, rb.velocity.y, forwardBack);
     }
 
     /**
@@ -434,9 +456,12 @@ public class PlayerController : Character
    */
     public void Look()
     {
-        //Debug.Log(Input.GetAxis("Mouse X"));
-        transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
-        cam.transform.Rotate(-Input.GetAxis("Mouse Y"), 0, 0);
+        if (cam != null)
+        {
+            //Debug.Log(Input.GetAxis("Mouse X"));
+            transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
+            cam.transform.Rotate(-Input.GetAxis("Mouse Y"), 0, 0);
+        }
     }
 
     /**
@@ -712,11 +737,14 @@ public class PlayerController : Character
 
     public void GunID()
     {
-        if(defaultWeapon.baseFireRate >=250 && defaultWeapon.baseFireRate < 350)
+        if(defaultWeapon != null)
         {
-            if (defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
+            if (defaultWeapon.baseFireRate >= 250 && defaultWeapon.baseFireRate < 350)
             {
-                WeaponTextUI.text = "Automatic Rifle";
+                if(defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
+                {
+                    WeaponTextUI.text = "Automatic Rifle";
+                }
             }
         }
     }
