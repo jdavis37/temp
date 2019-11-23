@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Character
 {
@@ -85,9 +86,23 @@ public class PlayerController : Character
 
     public SimpleHealthBar healthBar;
 
+    public GameObject PauseMenu;
+    public Button resumeButton; 
+    bool paused;
+
+    public GameObject GameOverScreen;
+    public Text GameOverText;
+
+    public Camera tempCam;
+
+    bool PlayerIsDead;
+
     // Use this for initialization
     public override void Start()
     {
+        GameOverScreen.SetActive(false);
+        PauseMenu.SetActive(false);
+        paused = false;
         healthBar.UpdateBar(health, maxHealth);
         base.Start();
         base.Start();
@@ -109,6 +124,8 @@ public class PlayerController : Character
         {
             thirdWeapon = defaultWeapon;
         }
+        tempCam = cam;
+        PlayerIsDead = false;
     }
 
     /**
@@ -119,7 +136,6 @@ public class PlayerController : Character
    */
     public override void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         base.Update();
         HeldCheck();
         Attack();
@@ -182,10 +198,108 @@ public class PlayerController : Character
 
         }
 
-        if (health < maxHealth && health > 0)
+        if (health > 0)
         {
             HealPlayer();
+            if(paused)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+            if (Input.GetKeyDown(KeyCode.BackQuote))
+            {
+                if (paused)
+                {
+                    PauseMenu.SetActive(false);
+                    paused = false;
+                    rb = this.GetComponent("Rigidbody") as Rigidbody;
+                    tr = this.GetComponent("Transform") as Transform;
+                    cam = tempCam;
+                    resumeButton.interactable = false;
+                }
+                else
+                {
+                    PauseMenu.SetActive(true);
+                    paused = true;
+                    rb = null;
+                    tr = null;
+                    cam = null;
+                    resumeButton.interactable = true;
+                    resumeButton.onClick.AddListener(ResumeGame);
+                }
+
+                Debug.Log("Game Paused");
+            }
         }
+        else
+        {
+            healthBar.UpdateBar(0, maxHealth);
+            GameOverScreen.SetActive(true);
+            rb = null;
+            tr = null;
+            defaultWeapon = null;
+            equipedWeapon = null;
+            secondWeapon = null;
+            thirdWeapon = null;
+            cam = null;
+            Cursor.lockState = CursorLockMode.None;
+
+            if(iFrames <= 0 && PlayerIsDead == false)
+            {
+                iFrames = 250;
+                PlayerIsDead = true;
+            }
+            else if (iFrames <= 0 && PlayerIsDead == true)
+            {
+                Debug.Log("Restart Game");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
+            if(iFrames > 0 && PlayerIsDead == false)
+            {
+                GameOverText.text = "Level will reset in\n5!";
+            }
+            else if(iFrames > 200)
+            {
+                GameOverText.text = "Level will reset in\n5!";
+            }
+            else if (iFrames > 150)
+            {
+                GameOverText.text = "Level will reset in\n4!";
+            }
+            else if (iFrames > 100)
+            {
+                GameOverText.text = "Level will reset in\n3!";
+            }
+            else if (iFrames > 50)
+            {
+                GameOverText.text = "Level will reset in\n2!";
+            }
+            else if (iFrames > 0)
+            {
+                GameOverText.text = "Level will reset in\n1!";
+            }
+            else 
+            {
+                GameOverText.text = "Level will reset\nNOW!";
+            }
+        }
+    }
+
+    void ResumeGame()
+    {
+        PauseMenu.SetActive(false);
+        paused = false;
+        rb = this.GetComponent("Rigidbody") as Rigidbody;
+        tr = this.GetComponent("Transform") as Transform;
+        cam = tempCam;
+        resumeButton.interactable = false;
+
+        Debug.Log("Resume Button Pressed");
     }
 
     /**
@@ -378,14 +492,17 @@ public class PlayerController : Character
    */
     void Jump()
     {
-        if (Input.GetAxis("Jump") > 0 && jumpHeld == 0)
+        if (rb != null)
         {
-            if (jumpsRemaining > 0)
+            if (Input.GetAxis("Jump") > 0 && jumpHeld == 0)
             {
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                rb.AddForce(new Vector3(0, jumpForce ,0));
-                grounded = false;
-                jumpsRemaining--;
+                if (jumpsRemaining > 0)
+                {
+                    rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                    rb.AddForce(new Vector3(0, jumpForce, 0));
+                    grounded = false;
+                    jumpsRemaining--;
+                }
             }
         }
     }
@@ -423,7 +540,8 @@ public class PlayerController : Character
    */
     public void Movement(float forwardBack, float leftRight)
     {
-        rb.velocity = new Quaternion(0,rb.rotation.y,0,rb.rotation.w) * new Vector3(leftRight, rb.velocity.y, forwardBack);
+        if (rb != null)
+            rb.velocity = new Quaternion(0,rb.rotation.y,0,rb.rotation.w) * new Vector3(leftRight, rb.velocity.y, forwardBack);
     }
 
     /**
@@ -434,9 +552,12 @@ public class PlayerController : Character
    */
     public void Look()
     {
-        //Debug.Log(Input.GetAxis("Mouse X"));
-        transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
-        cam.transform.Rotate(-Input.GetAxis("Mouse Y"), 0, 0);
+        if (cam != null)
+        {
+            //Debug.Log(Input.GetAxis("Mouse X"));
+            transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
+            cam.transform.Rotate(-Input.GetAxis("Mouse Y"), 0, 0);
+        }
     }
 
     /**
@@ -712,11 +833,14 @@ public class PlayerController : Character
 
     public void GunID()
     {
-        if(defaultWeapon.baseFireRate >=250 && defaultWeapon.baseFireRate < 350)
+        if(defaultWeapon != null)
         {
-            if (defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
+            if (defaultWeapon.baseFireRate >= 250 && defaultWeapon.baseFireRate < 350)
             {
-                WeaponTextUI.text = "Automatic Rifle";
+                if(defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
+                {
+                    WeaponTextUI.text = "Automatic Rifle";
+                }
             }
         }
     }

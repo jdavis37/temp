@@ -21,6 +21,7 @@ public class RestartGame : MonoBehaviour
     void Start()
     {
         button.onClick.AddListener(Restart);
+        button.interactable = true;
     }
 
     /**
