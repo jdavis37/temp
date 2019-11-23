@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Character
 {
@@ -86,13 +87,22 @@ public class PlayerController : Character
     public SimpleHealthBar healthBar;
 
     public GameObject PauseMenu;
+    public Button resumeButton; 
+    bool paused;
+
     public GameObject GameOverScreen;
+    public Text GameOverText;
+
+    public Camera tempCam;
+
+    bool PlayerIsDead;
 
     // Use this for initialization
     public override void Start()
     {
         GameOverScreen.SetActive(false);
         PauseMenu.SetActive(false);
+        paused = false;
         healthBar.UpdateBar(health, maxHealth);
         base.Start();
         base.Start();
@@ -114,6 +124,8 @@ public class PlayerController : Character
         {
             thirdWeapon = defaultWeapon;
         }
+        tempCam = cam;
+        PlayerIsDead = false;
     }
 
     /**
@@ -124,7 +136,6 @@ public class PlayerController : Character
    */
     public override void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         base.Update();
         HeldCheck();
         Attack();
@@ -190,6 +201,39 @@ public class PlayerController : Character
         if (health > 0)
         {
             HealPlayer();
+            if(paused)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+            if (Input.GetKeyDown(KeyCode.BackQuote))
+            {
+                if (paused)
+                {
+                    PauseMenu.SetActive(false);
+                    paused = false;
+                    rb = this.GetComponent("Rigidbody") as Rigidbody;
+                    tr = this.GetComponent("Transform") as Transform;
+                    cam = tempCam;
+                    resumeButton.interactable = false;
+                }
+                else
+                {
+                    PauseMenu.SetActive(true);
+                    paused = true;
+                    rb = null;
+                    tr = null;
+                    cam = null;
+                    resumeButton.interactable = true;
+                    resumeButton.onClick.AddListener(ResumeGame);
+                }
+
+                Debug.Log("Game Paused");
+            }
         }
         else
         {
@@ -202,8 +246,60 @@ public class PlayerController : Character
             secondWeapon = null;
             thirdWeapon = null;
             cam = null;
-            //Time.timeScale = 0.0f;
+            Cursor.lockState = CursorLockMode.None;
+
+            if(iFrames <= 0 && PlayerIsDead == false)
+            {
+                iFrames = 250;
+                PlayerIsDead = true;
+            }
+            else if (iFrames <= 0 && PlayerIsDead == true)
+            {
+                Debug.Log("Restart Game");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
+            if(iFrames > 0 && PlayerIsDead == false)
+            {
+                GameOverText.text = "Level will reset in\n5!";
+            }
+            else if(iFrames > 200)
+            {
+                GameOverText.text = "Level will reset in\n5!";
+            }
+            else if (iFrames > 150)
+            {
+                GameOverText.text = "Level will reset in\n4!";
+            }
+            else if (iFrames > 100)
+            {
+                GameOverText.text = "Level will reset in\n3!";
+            }
+            else if (iFrames > 50)
+            {
+                GameOverText.text = "Level will reset in\n2!";
+            }
+            else if (iFrames > 0)
+            {
+                GameOverText.text = "Level will reset in\n1!";
+            }
+            else 
+            {
+                GameOverText.text = "Level will reset\nNOW!";
+            }
         }
+    }
+
+    void ResumeGame()
+    {
+        PauseMenu.SetActive(false);
+        paused = false;
+        rb = this.GetComponent("Rigidbody") as Rigidbody;
+        tr = this.GetComponent("Transform") as Transform;
+        cam = tempCam;
+        resumeButton.interactable = false;
+
+        Debug.Log("Resume Button Pressed");
     }
 
     /**
