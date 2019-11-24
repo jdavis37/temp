@@ -93,8 +93,6 @@ public class PlayerController : Character
     public GameObject GameOverScreen;
     public Text GameOverText;
 
-    public Camera tempCam;
-
     bool PlayerIsDead;
 
     // Use this for initialization
@@ -124,7 +122,6 @@ public class PlayerController : Character
         {
             thirdWeapon = defaultWeapon;
         }
-        tempCam = cam;
         PlayerIsDead = false;
     }
 
@@ -137,10 +134,15 @@ public class PlayerController : Character
     public override void Update()
     {
         base.Update();
-        HeldCheck();
-        Attack();
-        WeaponSelect();
-        Invulnerability();
+        if (!paused)
+        {
+
+            HeldCheck();
+            Attack();
+            WeaponSelect();
+            Invulnerability();
+        }
+
         if (hoverTime == 0)
         {
             Hover(false, false, 0);
@@ -172,7 +174,7 @@ public class PlayerController : Character
         }
 
 
-        if (!attacking)
+        if (!attacking && !paused)
         {
             Jump();
             GravControl();
@@ -182,15 +184,20 @@ public class PlayerController : Character
 
     /**
    * @pre: N/A.
-   * @post: {hysics related requirements should be parsed.
+   * @post: physics related requirements should be parsed.
    * @param: None.
    * @return: None.
    */
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        Look();
-        Movement(Input.GetAxisRaw("ForwardBack") * speed, Input.GetAxisRaw("RightLeft") * speed);
+
+        if (!paused)
+        {
+            Look();
+            Movement(Input.GetAxisRaw("ForwardBack") * speed, Input.GetAxisRaw("RightLeft") * speed);
+        }
+            
         // Check for movement and facing direction
         if (!grounded)
         {
@@ -216,18 +223,12 @@ public class PlayerController : Character
                 {
                     PauseMenu.SetActive(false);
                     paused = false;
-                    rb = this.GetComponent("Rigidbody") as Rigidbody;
-                    tr = this.GetComponent("Transform") as Transform;
-                    cam = tempCam;
                     resumeButton.interactable = false;
                 }
                 else
                 {
                     PauseMenu.SetActive(true);
                     paused = true;
-                    rb = null;
-                    tr = null;
-                    cam = null;
                     resumeButton.interactable = true;
                     resumeButton.onClick.AddListener(ResumeGame);
                 }
@@ -239,13 +240,6 @@ public class PlayerController : Character
         {
             healthBar.UpdateBar(0, maxHealth);
             GameOverScreen.SetActive(true);
-            rb = null;
-            tr = null;
-            defaultWeapon = null;
-            equipedWeapon = null;
-            secondWeapon = null;
-            thirdWeapon = null;
-            cam = null;
             Cursor.lockState = CursorLockMode.None;
 
             if(iFrames <= 0 && PlayerIsDead == false)
@@ -294,9 +288,6 @@ public class PlayerController : Character
     {
         PauseMenu.SetActive(false);
         paused = false;
-        rb = this.GetComponent("Rigidbody") as Rigidbody;
-        tr = this.GetComponent("Transform") as Transform;
-        cam = tempCam;
         resumeButton.interactable = false;
 
         Debug.Log("Resume Button Pressed");
