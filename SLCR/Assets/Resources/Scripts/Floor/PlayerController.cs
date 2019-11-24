@@ -90,15 +90,17 @@ public class PlayerController : Character
     public Button resumeButton; 
     bool paused;
 
-    public GameObject GameOverScreen;
+    public GameObject DeathScreen;
     public Text GameOverText;
 
     bool PlayerIsDead;
 
+    public GameObject reticle;
+
     // Use this for initialization
     public override void Start()
     {
-        GameOverScreen.SetActive(false);
+        DeathScreen.SetActive(false);
         PauseMenu.SetActive(false);
         paused = false;
         healthBar.UpdateBar(health, maxHealth);
@@ -134,7 +136,7 @@ public class PlayerController : Character
     public override void Update()
     {
         base.Update();
-        if (!paused)
+        if (!paused && !PlayerIsDead)
         {
 
             HeldCheck();
@@ -174,7 +176,7 @@ public class PlayerController : Character
         }
 
 
-        if (!attacking && !paused)
+        if (!attacking && !paused && !PlayerIsDead)
         {
             Jump();
             GravControl();
@@ -192,7 +194,7 @@ public class PlayerController : Character
     {
         base.FixedUpdate();
 
-        if (!paused)
+        if (!paused && !PlayerIsDead)
         {
             Look();
             Movement(Input.GetAxisRaw("ForwardBack") * speed, Input.GetAxisRaw("RightLeft") * speed);
@@ -224,6 +226,7 @@ public class PlayerController : Character
                     PauseMenu.SetActive(false);
                     paused = false;
                     resumeButton.interactable = false;
+                    reticle.SetActive(true);
                 }
                 else
                 {
@@ -231,6 +234,7 @@ public class PlayerController : Character
                     paused = true;
                     resumeButton.interactable = true;
                     resumeButton.onClick.AddListener(ResumeGame);
+                    reticle.SetActive(false);
                 }
 
                 Debug.Log("Game Paused");
@@ -238,50 +242,17 @@ public class PlayerController : Character
         }
         else
         {
+            PlayerIsDead = true;
             healthBar.UpdateBar(0, maxHealth);
-            GameOverScreen.SetActive(true);
+            DeathScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
-
-            if(iFrames <= 0 && PlayerIsDead == false)
-            {
-                iFrames = 250;
-                PlayerIsDead = true;
-            }
-            else if (iFrames <= 0 && PlayerIsDead == true)
-            {
-                Debug.Log("Restart Game");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-
-            if(iFrames > 0 && PlayerIsDead == false)
-            {
-                GameOverText.text = "Level will reset in\n5!";
-            }
-            else if(iFrames > 200)
-            {
-                GameOverText.text = "Level will reset in\n5!";
-            }
-            else if (iFrames > 150)
-            {
-                GameOverText.text = "Level will reset in\n4!";
-            }
-            else if (iFrames > 100)
-            {
-                GameOverText.text = "Level will reset in\n3!";
-            }
-            else if (iFrames > 50)
-            {
-                GameOverText.text = "Level will reset in\n2!";
-            }
-            else if (iFrames > 0)
-            {
-                GameOverText.text = "Level will reset in\n1!";
-            }
-            else 
-            {
-                GameOverText.text = "Level will reset\nNOW!";
-            }
+            reticle.SetActive(false);
         }
+    }
+
+    public bool IsPlayerDead()
+    {
+        return PlayerIsDead;
     }
 
     void ResumeGame()
