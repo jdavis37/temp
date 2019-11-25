@@ -84,18 +84,31 @@ public class PlayerController : Character
     // Timer for time player is unable to be hurt after taking damage
     public int iFrames;
 
-    public SimpleHealthBar healthBar;
+    // Crosshair for player to use for gun.
+    public GameObject reticle;
 
+    // Player HUD containing health bar and ammo counter.
+    public GameObject playerHUD;
+
+    // Player Health Bar on Player HUD.
+    public GameObject playerHealth;
+
+    // Player Health Bar on Player HUD.
+    public GameObject playerAmmo;
+
+    // UI Panel to pop up when player wants to pause the game.
     public GameObject PauseMenu;
-    public Button resumeButton; 
+    // Resume Game Button found under Pause Menu.
+    public Button resumeButton;
+    // Pause Game Flag.
     bool paused;
 
+    // UI Panel to pop up when Player health is below Zero.
     public GameObject DeathScreen;
     public Text GameOverText;
 
+    // PlayerIsDead Flag.
     bool PlayerIsDead;
-
-    public GameObject reticle;
 
     // Use this for initialization
     public override void Start()
@@ -103,7 +116,6 @@ public class PlayerController : Character
         DeathScreen.SetActive(false);
         PauseMenu.SetActive(false);
         paused = false;
-        healthBar.UpdateBar(health, maxHealth);
         base.Start();
         base.Start();
         jumpsRemaining = maxJump;
@@ -227,6 +239,7 @@ public class PlayerController : Character
                     paused = false;
                     resumeButton.interactable = false;
                     reticle.SetActive(true);
+                    playerHUD.SetActive(true);
                 }
                 else
                 {
@@ -235,6 +248,7 @@ public class PlayerController : Character
                     resumeButton.interactable = true;
                     resumeButton.onClick.AddListener(ResumeGame);
                     reticle.SetActive(false);
+                    playerHUD.SetActive(false);
                 }
 
                 Debug.Log("Game Paused");
@@ -243,7 +257,8 @@ public class PlayerController : Character
         else
         {
             PlayerIsDead = true;
-            healthBar.UpdateBar(0, maxHealth);
+            playerHealth.transform.localScale = new Vector3(0, 1, 1);
+            playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
             DeathScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             reticle.SetActive(false);
@@ -790,7 +805,8 @@ public class PlayerController : Character
     public void HealPlayer()
     {
         ChangeHealth(1);
-        healthBar.UpdateBar(health, maxHealth);
+        playerHealth.transform.localScale = new Vector3(health / maxHealth, 1, 1);
+        playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
     }
 
     public void GunID()
