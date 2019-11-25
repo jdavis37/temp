@@ -265,11 +265,23 @@ public class PlayerController : Character
         }
     }
 
+    /**
+   * @pre: N/A.
+   * @post: returns PlayerIsDead.
+   * @param: None.
+   * @return: None.
+   */
     public bool IsPlayerDead()
     {
         return PlayerIsDead;
     }
 
+    /**
+   * @pre: Either pause menu key is pressed or Resume Game button is pressed.
+   * @post: PauseMenu is deactivated.
+   * @param: None.
+   * @return: None.
+   */
     void ResumeGame()
     {
         PauseMenu.SetActive(false);
@@ -802,6 +814,12 @@ public class PlayerController : Character
         }      
     }
 
+    /**
+   * @pre: N/A.
+   * @post: Heals player every second after being hit.
+   * @param: None.
+   * @return: None.
+   */
     public void HealPlayer()
     {
         ChangeHealth(1);
@@ -809,6 +827,12 @@ public class PlayerController : Character
         playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
     }
 
+    /**
+   * @pre: defaultWeapon or eqippedWeapon is in use.
+   * @post: Identifies Equipped gun based on gun parts.
+   * @param: None.
+   * @return: None.
+   */
     public void GunID()
     {
         if(defaultWeapon != null)
