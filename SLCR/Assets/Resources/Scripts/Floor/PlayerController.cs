@@ -101,6 +101,8 @@ public class PlayerController : Character
     // Resume Game Button found under Pause Menu.
     public Button resumeButton;
     // Pause Game Flag.
+    public Text pauseMenuText;
+    // Pause Menu / Start Menu Flag.
     bool paused;
 
     // UI Panel to pop up when Player health is below Zero.
@@ -114,8 +116,11 @@ public class PlayerController : Character
     public override void Start()
     {
         DeathScreen.SetActive(false);
-        PauseMenu.SetActive(false);
-        paused = false;
+        playerHUD.SetActive(false);
+        reticle.SetActive(false);
+        PauseMenu.SetActive(true);
+        resumeButton.onClick.AddListener(PauseMenuController);
+        paused = true;
         base.Start();
         base.Start();
         jumpsRemaining = maxJump;
@@ -233,25 +238,7 @@ public class PlayerController : Character
 
             if (Input.GetKeyDown(KeyCode.BackQuote))
             {
-                if (paused)
-                {
-                    PauseMenu.SetActive(false);
-                    paused = false;
-                    resumeButton.interactable = false;
-                    reticle.SetActive(true);
-                    playerHUD.SetActive(true);
-                }
-                else
-                {
-                    PauseMenu.SetActive(true);
-                    paused = true;
-                    resumeButton.interactable = true;
-                    resumeButton.onClick.AddListener(ResumeGame);
-                    reticle.SetActive(false);
-                    playerHUD.SetActive(false);
-                }
-
-                Debug.Log("Game Paused");
+                PauseMenuController();
             }
         }
         else
@@ -266,6 +253,37 @@ public class PlayerController : Character
     }
 
     /**
+  * @pre: Either pause menu key is pressed or Resume Game button is pressed.
+  * @post: PauseMenu/StartMenu is turned on and off.
+  * @param: None.
+  * @return: None.
+  */
+    public void PauseMenuController()
+    {
+        if (paused)
+        {
+            PauseMenu.SetActive(false);
+            paused = false;
+            resumeButton.interactable = false;
+            reticle.SetActive(true);
+            playerHUD.SetActive(true);
+
+            Debug.Log("Game Resumed");
+        }
+        else
+        {
+            pauseMenuText.text = "Game Paused";
+            PauseMenu.SetActive(true);
+            paused = true;
+            resumeButton.interactable = true;
+            reticle.SetActive(false);
+            playerHUD.SetActive(false);
+
+            Debug.Log("Game Paused");
+        }
+    }
+
+    /**
    * @pre: N/A.
    * @post: returns PlayerIsDead.
    * @param: None.
@@ -274,21 +292,6 @@ public class PlayerController : Character
     public bool IsPlayerDead()
     {
         return PlayerIsDead;
-    }
-
-    /**
-   * @pre: Either pause menu key is pressed or Resume Game button is pressed.
-   * @post: PauseMenu is deactivated.
-   * @param: None.
-   * @return: None.
-   */
-    void ResumeGame()
-    {
-        PauseMenu.SetActive(false);
-        paused = false;
-        resumeButton.interactable = false;
-
-        Debug.Log("Resume Button Pressed");
     }
 
     /**

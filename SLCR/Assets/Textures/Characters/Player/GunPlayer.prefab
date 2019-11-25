@@ -106,7 +106,7 @@ RectTransform:
   m_Children:
   - {fileID: 1806397430378662659}
   m_Father: {fileID: 7606170994086133112}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -280,6 +280,83 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Press either the Resume Button \nor the ~ key again to resume game"
+--- !u!1 &2194594166817565234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5484939878078235588}
+  - component: {fileID: 1110361626058254433}
+  - component: {fileID: 3031575065613505424}
+  m_Layer: 0
+  m_Name: Squad Death Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5484939878078235588
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194594166817565234}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7606170994086133112}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000030517578, y: 50}
+  m_SizeDelta: {x: 600, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1110361626058254433
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194594166817565234}
+  m_CullTransparentMesh: 0
+--- !u!114 &3031575065613505424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194594166817565234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.01886791, g: 0.018066913, b: 0.018066913, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Sqaud Eliminated!
 --- !u!1 &4059401475779896182
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +446,7 @@ GameObject:
   - component: {fileID: 1575225126579082288}
   - component: {fileID: 8411141012872619020}
   m_Layer: 0
-  m_Name: Game Over
+  m_Name: Game Over Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +660,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Resume Game
+  m_Text: Start/Resume Game
 --- !u!1 &5365515662850454186
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +1038,7 @@ GameObject:
   - component: {fileID: 6124622885991348359}
   - component: {fileID: 6160288641650935703}
   m_Layer: 0
-  m_Name: Game Over
+  m_Name: Pause Menu Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -984,7 +1061,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000061035156, y: 100}
-  m_SizeDelta: {x: 400, y: 60}
+  m_SizeDelta: {x: 600, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6124622885991348359
 CanvasRenderer:
@@ -1021,11 +1098,11 @@ MonoBehaviour:
     m_MaxSize: 50
     m_Alignment: 1
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Paused
+  m_Text: Welcome to SLCR!
 --- !u!1 &7594192708044454589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,8 +1524,12 @@ MonoBehaviour:
   playerHUD: {fileID: 8159674585041695269}
   playerHealth: {fileID: 7594192708044454589}
   playerAmmo: {fileID: 7062393674171679271}
+  StartMenu: {fileID: 0}
+  startButton: {fileID: 0}
+  playerReady: 0
   PauseMenu: {fileID: 5849635125734345485}
   resumeButton: {fileID: 1252163699554103569}
+  pauseMenuText: {fileID: 6160288641650935703}
   DeathScreen: {fileID: 82212332630354807}
   GameOverText: {fileID: 0}
 --- !u!54 &8324309416891361292
@@ -1670,6 +1751,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8431805978147764862}
+  - {fileID: 5484939878078235588}
   - {fileID: 920762826301537529}
   m_Father: {fileID: 6073260930208661089}
   m_RootOrder: 2
