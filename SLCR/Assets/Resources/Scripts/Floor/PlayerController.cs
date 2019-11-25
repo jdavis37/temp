@@ -15,6 +15,7 @@ public class PlayerController : Character
     // Force upwards used for jumping
     public float jumpForce = 10.0f;
 
+    public float lookpitch = 0;
     private float rightLeftPrior = 0;
     private float forwardBackPrior = 0;
     private float jumpPrior = 0;
@@ -546,9 +547,10 @@ public class PlayerController : Character
     {
         if (cam != null)
         {
-            //Debug.Log(Input.GetAxis("Mouse X"));
             transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
-            cam.transform.Rotate(-Input.GetAxis("Mouse Y"), 0, 0);
+            lookpitch -= Input.GetAxis("Mouse Y");
+            lookpitch = Mathf.Clamp(lookpitch, -90, 90);
+            cam.transform.eulerAngles = new Vector3(lookpitch, transform.eulerAngles.y, 0);
         }
     }
 
