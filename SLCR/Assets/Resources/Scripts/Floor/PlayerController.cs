@@ -84,26 +84,43 @@ public class PlayerController : Character
     // Timer for time player is unable to be hurt after taking damage
     public int iFrames;
 
-    public SimpleHealthBar healthBar;
+    // Crosshair for player to use for gun.
+    public GameObject reticle;
 
+    // Player HUD containing health bar and ammo counter.
+    public GameObject playerHUD;
+
+    // Player Health Bar on Player HUD.
+    public GameObject playerHealth;
+
+    // Player Health Bar on Player HUD.
+    public GameObject playerAmmo;
+
+    // UI Panel to pop up when player wants to pause the game.
     public GameObject PauseMenu;
-    public Button resumeButton; 
+    // Resume Game Button found under Pause Menu.
+    public Button resumeButton;
+    // Pause Game Flag.
+    public Text pauseMenuText;
+    // Pause Menu / Start Menu Flag.
     bool paused;
 
+    // UI Panel to pop up when Player health is below Zero.
     public GameObject DeathScreen;
     public Text GameOverText;
 
+    // PlayerIsDead Flag.
     bool PlayerIsDead;
-
-    public GameObject reticle;
 
     // Use this for initialization
     public override void Start()
     {
         DeathScreen.SetActive(false);
-        PauseMenu.SetActive(false);
-        paused = false;
-        healthBar.UpdateBar(health, maxHealth);
+        playerHUD.SetActive(false);
+        reticle.SetActive(false);
+        PauseMenu.SetActive(true);
+        resumeButton.onClick.AddListener(PauseMenuController);
+        paused = true;
         base.Start();
         base.Start();
         jumpsRemaining = maxJump;
@@ -221,47 +238,60 @@ public class PlayerController : Character
 
             if (Input.GetKeyDown(KeyCode.BackQuote))
             {
-                if (paused)
-                {
-                    PauseMenu.SetActive(false);
-                    paused = false;
-                    resumeButton.interactable = false;
-                    reticle.SetActive(true);
-                }
-                else
-                {
-                    PauseMenu.SetActive(true);
-                    paused = true;
-                    resumeButton.interactable = true;
-                    resumeButton.onClick.AddListener(ResumeGame);
-                    reticle.SetActive(false);
-                }
-
-                Debug.Log("Game Paused");
+                PauseMenuController();
             }
         }
         else
         {
             PlayerIsDead = true;
-            healthBar.UpdateBar(0, maxHealth);
+            playerHealth.transform.localScale = new Vector3(0, 1, 1);
+            playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
             DeathScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             reticle.SetActive(false);
         }
     }
 
+    /**
+  * @pre: Either pause menu key is pressed or Resume Game button is pressed.
+  * @post: PauseMenu/StartMenu is turned on and off.
+  * @param: None.
+  * @return: None.
+  */
+    public void PauseMenuController()
+    {
+        if (paused)
+        {
+            PauseMenu.SetActive(false);
+            paused = false;
+            resumeButton.interactable = false;
+            reticle.SetActive(true);
+            playerHUD.SetActive(true);
+
+            Debug.Log("Game Resumed");
+        }
+        else
+        {
+            pauseMenuText.text = "Game Paused";
+            PauseMenu.SetActive(true);
+            paused = true;
+            resumeButton.interactable = true;
+            reticle.SetActive(false);
+            playerHUD.SetActive(false);
+
+            Debug.Log("Game Paused");
+        }
+    }
+
+    /**
+   * @pre: N/A.
+   * @post: returns PlayerIsDead.
+   * @param: None.
+   * @return: None.
+   */
     public bool IsPlayerDead()
     {
         return PlayerIsDead;
-    }
-
-    void ResumeGame()
-    {
-        PauseMenu.SetActive(false);
-        paused = false;
-        resumeButton.interactable = false;
-
-        Debug.Log("Resume Button Pressed");
     }
 
     /**
@@ -787,12 +817,25 @@ public class PlayerController : Character
         }      
     }
 
+    /**
+   * @pre: N/A.
+   * @post: Heals player every second after being hit.
+   * @param: None.
+   * @return: None.
+   */
     public void HealPlayer()
     {
         ChangeHealth(1);
-        healthBar.UpdateBar(health, maxHealth);
+        playerHealth.transform.localScale = new Vector3(health / maxHealth, 1, 1);
+        playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
     }
 
+    /**
+   * @pre: defaultWeapon or eqippedWeapon is in use.
+   * @post: Identifies Equipped gun based on gun parts.
+   * @param: None.
+   * @return: None.
+   */
     public void GunID()
     {
         if(defaultWeapon != null)
