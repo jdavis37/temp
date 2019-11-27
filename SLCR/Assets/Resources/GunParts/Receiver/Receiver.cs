@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Receiver : MonoBehaviour
+public abstract class Receiver : GunPart
 {
     // Number of parts for the gun
     public int NUM_PARTS;
@@ -59,8 +59,13 @@ public abstract class Receiver : MonoBehaviour
     //Used to track time between shots.
     public float fireDelay = 0;
 
+    public bool readyForUse = false;
+
     // Start is called before the first frame update
-    public abstract void Start();
+    public override void Start()
+    {
+        base.Start();
+    }
 
     // Update is called once per frame
     public virtual void Update()

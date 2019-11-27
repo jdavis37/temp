@@ -121,6 +121,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &33534777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+    type: 3}
+  m_PrefabInstance: {fileID: 8324309418429990253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7713ec81ad7fa814f82568e6f7522f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &152302573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1257,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &1904556581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720,
+    type: 3}
+  m_PrefabInstance: {fileID: 8324309418429990253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1904556589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904556581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cad269701c76c4f9b8379e2f7a7697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: {fileID: 33534777}
+  ammoTypes: []
+  barrels: []
+  calibers: []
+  cyclicModifiers: []
+  magazines: []
+  receivers: []
+  sights: []
+  stocks: []
+  underBarrels: []
+  otherParts: []
+  builtGuns: []
 --- !u!1001 &8324309418429990253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1312,5 +1354,63 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: buildOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: readyForUse
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: ammo
+      value: 
+      objectReference: {fileID: -1022641583580689473, guid: 09d59c1a05d8ab64598d6e545c537b9b,
+        type: 3}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: barrel
+      value: 
+      objectReference: {fileID: -1473780867176819963, guid: bfbb6bc60fb624b45a4232a9903b9d70,
+        type: 3}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: caliber
+      value: 
+      objectReference: {fileID: -5026492355637124997, guid: ef508d59b7cfa72478d932ace6c86a14,
+        type: 3}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: cyclicModifier
+      value: 
+      objectReference: {fileID: -6937119491069638535, guid: 4b57545e1b645b9499f9a63884aca13b,
+        type: 3}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: magazine
+      value: 
+      objectReference: {fileID: -7285391244613864717, guid: 61b29efce857cea45a1aedced9a3686d,
+        type: 3}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: sight
+      value: 
+      objectReference: {fileID: -1241802687859885872, guid: 5df05f4ff7ef97245adad9c2bb5b66a2,
+        type: 3}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: stock
+      value: 
+      objectReference: {fileID: -4520188347005809531, guid: 9e86f02a2bbd5b34b96a15a939bede5e,
+        type: 3}
+    - target: {fileID: 8862230994355048379, guid: 9f557b530366bd74b88b1f567ba21720,
+        type: 3}
+      propertyPath: underBarrel
+      value: 
+      objectReference: {fileID: 3194251358609359420, guid: 5cd26e36dbcbe93458bf97813e5ea884,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f557b530366bd74b88b1f567ba21720, type: 3}

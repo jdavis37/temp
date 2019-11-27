@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class GunPart : MonoBehaviour
 {
+    public int ammountInInventory = 0;
+    public string ID = "";
     /**
    * @pre: N/A.
    * @post N/A.
@@ -11,6 +13,12 @@ public abstract class GunPart : MonoBehaviour
    * @return: Value that will not modify the original installed weapon's Damage.
    * Override if you need to change stats when making a object that inherits this class.
    */
+   public virtual void Start()
+    {
+        ID = this.GetType().Name;
+    }
+
+
 
     public virtual float GetDamageModifier()
     {

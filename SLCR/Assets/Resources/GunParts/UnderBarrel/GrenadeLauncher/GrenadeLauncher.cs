@@ -7,9 +7,9 @@ public class GrenadeLauncher : UnderBarrel
     //Modifier for attached weapon's spread in degrees
     public float precisionMod = 1.2f;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame

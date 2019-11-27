@@ -12,9 +12,9 @@ public class AltCaliber : Caliber
     public float recoilMod = .75f;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame

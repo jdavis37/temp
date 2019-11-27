@@ -14,9 +14,9 @@ public class AltBarrel : Barrel
     public float precisionMod = 2;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame

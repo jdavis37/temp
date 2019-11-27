@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RifleScript : Receiver
 {
+    public bool buildOnStart = false;
     new public const int NUM_PARTS = 8;
     public AmmoType ammo;
     public Barrel barrel;
@@ -24,9 +25,12 @@ public class RifleScript : Receiver
    */
     public override void Start()
     {
+        base.Start();
         parts = new GunPart[NUM_PARTS];
         BuildGun();
         CalculateStats();
+
+        
     }
 
     // Update is called once per frame
@@ -160,6 +164,7 @@ public class RifleScript : Receiver
         stock = Instantiate(RollStock(), this.transform);
         underBarrel = Instantiate(RollUnderBarrel(), this.transform);
         underBarrel.Attach(this);
+        readyForUse = true;
         return true;
     }
 
