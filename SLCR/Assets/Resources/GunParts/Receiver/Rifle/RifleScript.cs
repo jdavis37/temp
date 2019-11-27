@@ -16,6 +16,7 @@ public class RifleScript : Receiver
     public UnderBarrel underBarrel;
     public int fireDamage;
 
+    //Next is health, gun parts
 
     /**
    * @pre: N/A.
