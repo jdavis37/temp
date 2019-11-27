@@ -9,10 +9,11 @@ public class SpawnLoot : MonoBehaviour
     {
         spawnGun();
     }
+    
 
     void spawnGun()
     {
-            Object[] possible;
+        Object[] possible;
             possible = Resources.LoadAll("GunParts/Receiver", typeof(Receiver));
             //Make an instance, then call buildGun on the instantiated copy.
             Receiver gun;
@@ -21,7 +22,13 @@ public class SpawnLoot : MonoBehaviour
             gun.CalculateStats();
     }
 
-
+    void spawnReceiver()
+    {
+        Object[] possible;
+        possible = Resources.LoadAll("GunParts/Receiver", typeof(Receiver));
+        Receiver gun;
+        gun = Instantiate((Receiver)possible[Random.Range(0, possible.Length)]);
+    }
 
 
 
