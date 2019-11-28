@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public Receiver test;
+    public AmmoType test;
     public List<AmmoType> ammoTypes = new List<AmmoType>();
     public List<Barrel> barrels = new List<Barrel>();
     public List<Caliber> calibers = new List<Caliber>();
@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         AddToInventory(test);
+        Instantiate(TakeAmmoTypeFromInventory(0));
     }
 
     // Update is called once per frame

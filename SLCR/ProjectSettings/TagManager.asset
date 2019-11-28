@@ -6,6 +6,16 @@ TagManager:
   tags:
   - Ground
   - Hostile
+  - AmmoType
+  - Barrel
+  - Caliber
+  - CyclicModifier
+  - Magazine
+  - Receiver
+  - Sight
+  - Stock
+  - UnderBarrel
+  - Undefined
   layers:
   - Default
   - TransparentFX

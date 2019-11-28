@@ -14,6 +14,7 @@ public class PlayerController : Character
     int jumpsRemaining;
     // Force upwards used for jumping
     public float jumpForce = 10.0f;
+    public Inventory inventory;
 
     public float lookpitch = 0;
     private float rightLeftPrior = 0;
@@ -714,12 +715,79 @@ public class PlayerController : Character
    * @param: other object hit.
    * @return: None.
    */
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "PickUp")
+        if (collision.gameObject.tag == "AmmoType")
         {
             collision.gameObject.transform.parent = tr;
-           // collision.gameObject.GetComponent<Receiver>().PickUp();
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<AmmoType>());
+            collision.enabled = false;
+        }
+        else if (collision.gameObject.tag == "Barrel")
+        {
+            collision.gameObject.transform.parent = tr;
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<Barrel>());
+            collision.enabled = false;
+        }
+        else if (collision.gameObject.tag == "Caliber")
+        {
+            collision.gameObject.transform.parent = tr;
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<Caliber>());
+            collision.enabled = false;
+        }
+        else if (collision.gameObject.tag == "CyclicModifier")
+        {
+            collision.gameObject.transform.parent = tr;
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<CyclicModifier>());
+            collision.enabled = false;
+        }
+        else if (collision.gameObject.tag == "Magazine")
+        {
+            collision.gameObject.transform.parent = tr;
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<Magazine>());
+            collision.enabled = false;
+        }
+        else if (collision.gameObject.tag == "Receiver")
+        {
+            collision.gameObject.transform.parent = tr;
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<Receiver>());
+            collision.enabled = false;
+        }
+        else if (collision.gameObject.tag == "Sight")
+        {
+            collision.gameObject.transform.parent = tr;
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<Sight>());
+            collision.enabled = false;
+        }
+        else if (collision.gameObject.tag == "Stock")
+        {
+            collision.gameObject.transform.parent = tr;
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<Stock>());
+            collision.enabled = false;
+        }
+        else if (collision.gameObject.tag == "UnderBarrel")
+        {
+            collision.gameObject.transform.parent = tr;
+            collision.gameObject.transform.position = transform.position;
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            inventory.AddToInventory(collision.GetComponent<UnderBarrel>());
+            collision.enabled = false;
         }
 
     }
