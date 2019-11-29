@@ -228,7 +228,6 @@ public class PlayerController : Character
 
         if (health > 0)
         {
-            HealPlayer();
             if(paused)
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -236,6 +235,7 @@ public class PlayerController : Character
             else
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                ChangeHealth(1);
             }
 
             if (Input.GetKeyDown(KeyCode.BackQuote))
@@ -842,6 +842,9 @@ public class PlayerController : Character
                 iFrames = 50;
             }
         }
+
+        playerHealth.transform.localScale = new Vector3(health / maxHealth, 1, 1);
+        playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
     }
 
     /**
@@ -871,6 +874,8 @@ public class PlayerController : Character
             }
         }
 
+        playerHealth.transform.localScale = new Vector3(health / maxHealth, 1, 1);
+        playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
     }
 
     /**
@@ -885,19 +890,6 @@ public class PlayerController : Character
         {
             iFrames--;
         }      
-    }
-
-    /**
-   * @pre: N/A.
-   * @post: Heals player every second after being hit.
-   * @param: None.
-   * @return: None.
-   */
-    public void HealPlayer()
-    {
-        ChangeHealth(1);
-        playerHealth.transform.localScale = new Vector3(health / maxHealth, 1, 1);
-        playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
     }
 
     /**
