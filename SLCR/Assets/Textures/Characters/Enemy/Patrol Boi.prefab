@@ -18,8 +18,8 @@ GameObject:
   - component: {fileID: 8828175008528499322}
   - component: {fileID: 7405499311930210983}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Hostile
+  m_Name: Patrol Boi
+  m_TagString: Patrol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxJump: 2
-  health: 100
+  health: 250
   maxHealth: 0
   hit: 0
   speed: 10
