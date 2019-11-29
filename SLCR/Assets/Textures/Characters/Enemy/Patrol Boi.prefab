@@ -137,8 +137,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
-  m_Acceleration: 20
+  m_Speed: 6
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -184,5 +184,10 @@ MonoBehaviour:
   maxHealth: 0
   hit: 0
   speed: 10
+  meleeDamage: 5
+  player: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720, type: 3}
+  distance: 0
+  hitRadius: 3
   rb: {fileID: 0}
   tr: {fileID: 0}
+  gPlayer: {fileID: 0}

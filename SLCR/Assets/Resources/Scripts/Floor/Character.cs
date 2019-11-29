@@ -17,7 +17,7 @@ public class Character : MonoBehaviour {
     public float speed = 10.0f;
     public float meleeDamage = 5f;
 
-    public Transform player;
+    public GameObject player;
     public float distance = 0;
     public int hitRadius = 3;
 
@@ -26,7 +26,7 @@ public class Character : MonoBehaviour {
     //Character's Transform
     public Transform tr;
 
-    public PlayerController gunplayer;
+    public PlayerController gPlayer;
 
     /**
    * @pre: N/A.
@@ -38,7 +38,7 @@ public class Character : MonoBehaviour {
         maxHealth = health;
         rb = this.GetComponent("Rigidbody2D") as Rigidbody;
         tr = this.GetComponent("Transform") as Transform;
-        gunplayer.GetComponent<PlayerController>();
+        gPlayer = GetComponent("PlayerController") as PlayerController;
     }
 
     /**
@@ -59,6 +59,10 @@ public class Character : MonoBehaviour {
         if (hit)
         {
             hit = false;
+        }
+        if (Vector3.Distance(player.transform.position, tr.position) <= hitRadius)
+        {
+            Invoke("MeleeAttack", 3);
         }
 
     }
@@ -103,10 +107,7 @@ public class Character : MonoBehaviour {
 
     public void MeleeAttack()
     {
-        if(Vector3.Distance(player.position, tr.position) <= hitRadius)
-        {
-            gunplayer.ChangeHealth(-meleeDamage);
-        }
+            gPlayer.ChangeHealth(-meleeDamage);
     }
 
     public void MeleeCooldown()

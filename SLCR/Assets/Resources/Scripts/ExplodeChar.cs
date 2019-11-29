@@ -114,7 +114,7 @@ public class ExplodeChar : MonoBehaviour
     [System.Obsolete]
     public void Explode()
     {
-        AreaDamageEnemies(player.transform.position, explodingRadius, 50);
+        //AreaDamageEnemies(player.transform.position, explodingRadius, 50);
         explosion = this.GetComponent<ParticleSystem>();
         explosion.Play();
         Destroy(gameObject, explosion.duration);
