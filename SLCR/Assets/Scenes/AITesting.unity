@@ -127,6 +127,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6656796855394998777}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &21186474 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5811518191285066268, guid: 9a3bcd0f7f596cc478bc39138e87dd5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6656796855394998777}
+  m_PrefabAsset: {fileID: 0}
 --- !u!199 &21186477
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -15724,6 +15730,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1068401558 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5811518191285066268, guid: 9a3bcd0f7f596cc478bc39138e87dd5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1569281725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075760383
 GameObject:
   m_ObjectHideFlags: 0
@@ -20511,6 +20523,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4581876511452597141, guid: 9a3bcd0f7f596cc478bc39138e87dd5c,
+        type: 3}
+      propertyPath: tr
+      value: 
+      objectReference: {fileID: 1068401558}
     - target: {fileID: 5906025484338782084, guid: 9a3bcd0f7f596cc478bc39138e87dd5c,
         type: 3}
       propertyPath: looping
@@ -25338,6 +25355,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720,
         type: 3}
+    - target: {fileID: 4581876511452597141, guid: 9a3bcd0f7f596cc478bc39138e87dd5c,
+        type: 3}
+      propertyPath: tr
+      value: 
+      objectReference: {fileID: 21186474}
     m_RemovedComponents:
     - {fileID: 2858866809715480922, guid: 9a3bcd0f7f596cc478bc39138e87dd5c, type: 3}
     - {fileID: 5688265284295322046, guid: 9a3bcd0f7f596cc478bc39138e87dd5c, type: 3}

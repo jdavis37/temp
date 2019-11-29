@@ -74,11 +74,12 @@ public class ProjectileController : MonoBehaviour
             other.GetComponent<ExplodeChar>().ChangeHealth(-damage);
             Destroy(gameObject);
         }
-        else if(other.tag == "Patrol")
+        else if (other.tag == "Patrol")
         {
             other.GetComponent<Character>().ChangeHealth(-damage);
             Destroy(gameObject);
         }
-            
+
     }
+
 }

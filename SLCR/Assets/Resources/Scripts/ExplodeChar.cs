@@ -15,13 +15,17 @@ public class ExplodeChar : MonoBehaviour
     public bool hit = false;
     // Movement speed of the character
     public float speed = 10.0f;
+    public float explodingRadius = 8;
+    public double explosionDelay = 2.0;
 
     public NavMeshAgent nav;
+    public GameObject player;
 
     //Character's RigidBody
     public Rigidbody rb;
     //Character's Transform
     public Transform tr;
+    public float triggerExplosion = 0;
 
     private ParticleSystem explosion;
 
@@ -45,27 +49,33 @@ public class ExplodeChar : MonoBehaviour
    * @param: None.
    * @return: None.
    */
-    [System.Obsolete]
+ 
     public virtual void Update()
     {
-
         if (health == 0)
         {
             nav.isStopped = true;
             Invoke("Explode", 1);
         }
-
-
         if (hit)
         {
             hit = false;
         }
+        
+
 
     }
 
     public virtual void FixedUpdate()
     {
-
+        triggerExplosion = Vector3.Distance(transform.position, player.transform.position);
+        if (triggerExplosion < explodingRadius)
+        {
+            if (explosionDelay > 0)
+                explosionDelay -= .1;
+            else if (explosionDelay <= 0)
+                Invoke("Explode", 1);
+        }
     }
 
     /**
@@ -104,8 +114,10 @@ public class ExplodeChar : MonoBehaviour
     [System.Obsolete]
     public void Explode()
     {
+        AreaDamageEnemies(player.transform.position, explodingRadius, 50);
         explosion = this.GetComponent<ParticleSystem>();
         explosion.Play();
         Destroy(gameObject, explosion.duration);
     }
+
 }
