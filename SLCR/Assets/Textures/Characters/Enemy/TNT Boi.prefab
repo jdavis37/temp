@@ -167,13 +167,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxJump: 2
-  health: 100
+  health: 40
   maxHealth: 0
   hit: 0
   speed: 10
+  nav: {fileID: 0}
   rb: {fileID: 0}
   tr: {fileID: 0}
-  explosion: {fileID: 0}
 --- !u!198 &5906025484338782084
 ParticleSystem:
   m_ObjectHideFlags: 0
