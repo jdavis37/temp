@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-    
-public class Character : MonoBehaviour {
-
+public class ExplodeChar : MonoBehaviour
+{
     // Maximum number of jumps for the character
     public int maxJump = 2;
     //  Health of character
@@ -16,10 +16,14 @@ public class Character : MonoBehaviour {
     // Movement speed of the character
     public float speed = 10.0f;
 
+    public NavMeshAgent nav;
+
     //Character's RigidBody
     public Rigidbody rb;
     //Character's Transform
     public Transform tr;
+
+    private ParticleSystem explosion;
 
     /**
    * @pre: N/A.
@@ -27,10 +31,12 @@ public class Character : MonoBehaviour {
    * @param: None.
    * @return: None.
    */
-    public virtual void Start () {
+    public virtual void Start()
+    {
         maxHealth = health;
         rb = this.GetComponent("Rigidbody2D") as Rigidbody;
         tr = this.GetComponent("Transform") as Transform;
+        nav = this.GetComponent<NavMeshAgent>();
     }
 
     /**
@@ -39,14 +45,16 @@ public class Character : MonoBehaviour {
    * @param: None.
    * @return: None.
    */
-    public virtual void Update ()
+    [System.Obsolete]
+    public virtual void Update()
     {
-        
+
         if (health == 0)
         {
-            Object.Destroy(gameObject);
+            nav.isStopped = true;
+            Invoke("Explode", 1);
         }
-        
+
 
         if (hit)
         {
@@ -93,4 +101,11 @@ public class Character : MonoBehaviour {
         return result;
     }
 
+    [System.Obsolete]
+    public void Explode()
+    {
+        explosion = this.GetComponent<ParticleSystem>();
+        explosion.Play();
+        Destroy(gameObject, explosion.duration);
+    }
 }

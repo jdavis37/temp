@@ -16,6 +16,8 @@ TagManager:
   - Stock
   - UnderBarrel
   - Undefined
+  - Explosive
+  - Patrol
   layers:
   - Default
   - TransparentFX

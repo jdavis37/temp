@@ -69,7 +69,12 @@ public class ProjectileController : MonoBehaviour
    */
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Hostile")
+        if (other.tag == "Explosive")
+        {
+            other.GetComponent<ExplodeChar>().ChangeHealth(-damage);
+            Destroy(gameObject);
+        }
+        else if(other.tag == "Patrol")
         {
             other.GetComponent<Character>().ChangeHealth(-damage);
             Destroy(gameObject);
