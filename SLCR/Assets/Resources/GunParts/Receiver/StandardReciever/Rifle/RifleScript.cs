@@ -31,13 +31,13 @@ public class RifleScript : Receiver
         BuildGun();
         CalculateStats();
 
-        
+
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        
+
     }
 
     /**
@@ -57,17 +57,17 @@ public class RifleScript : Receiver
                 {
                     if (loadedAmmoCount > 0)
                     {
-                        ammo.Fire(new Vector3(0, 0, velocity), positon, angle, precision,fireDamage);
+                        ammo.Fire(new Vector3(0, 0, velocity), positon, angle, precision, fireDamage);
                         fireDelay = baseFireDelay;
                     }
-                    
+
                 }
                 loadedAmmoCount--;
             }
-           
-                return true;
+
+            return true;
         }
-        
+
         else
         {
             return false;
@@ -187,5 +187,140 @@ public class RifleScript : Receiver
         parts[7] = underBarrel;
     }
 
+    public override bool Attach(AmmoType input)
+    {
+        ammo = input;
+        input.transform.position = transform.position;
+        input.transform.parent = transform;
+        return false;
+    }
+
+    public override bool Attach(Barrel input)
+    {
+        barrel = input;
+        input.transform.position = transform.position;
+        input.transform.parent = transform;
+        return false;
+    }
+
+    public override bool Attach(Caliber input)
+    {
+        caliber = input;
+        input.transform.position = transform.position;
+        input.transform.parent = transform;
+        return false;
+    }
+
+    public override bool Attach(CyclicModifier input)
+    {
+        cyclicModifier = input;
+        input.transform.position = transform.position;
+        input.transform.parent = transform;
+        return false;
+    }
+
+    public override bool Attach(Magazine input)
+    {
+        magazine = input;
+        input.transform.position = transform.position;
+        input.transform.parent = transform;
+        return false;
+    }
+
+    public override bool Attach(Sight input)
+    {
+        sight = input;
+        input.transform.position = transform.position;
+        input.transform.parent = transform;
+        return false;
+    }
+
+    public override bool Attach(Stock input)
+    {
+        stock = input;
+        input.transform.position = transform.position;
+        input.transform.parent = transform;
+        return false;
+    }
+
+    public override bool Attach(UnderBarrel input)
+    {
+        underBarrel = input;
+        input.transform.position = transform.position;
+        input.transform.parent = transform;
+        return false;
+    }
+
+    public override AmmoType DetachAmmoType()
+    {
+        AmmoType ToReturn = ammo;
+        ammo.transform.parent = null;
+        ammo = null;
+        readyForUse = false;
+        return ToReturn;
+    }
+
+    public override Barrel Barrel()
+    {
+        Barrel ToReturn = barrel;
+        barrel.transform.parent = null;
+        barrel = null;
+        readyForUse = false;
+        return ToReturn;
+    }
+
+    public override Caliber Caliber()
+    {
+        Caliber ToReturn = caliber;
+        caliber.transform.parent = null;
+        caliber = null;
+        readyForUse = false;
+        return ToReturn;
+    }
+
+    public override CyclicModifier DetachCyclicModifier()
+    {
+        CyclicModifier ToReturn = cyclicModifier;
+        cyclicModifier.transform.parent = null;
+        cyclicModifier = null;
+        readyForUse = false;
+        return ToReturn;
+    }
+
+    public override Magazine DetachMagazine()
+    {
+        Magazine ToReturn = magazine;
+        magazine.transform.parent = null;
+        magazine = null;
+        readyForUse = false;
+        return ToReturn;
+    }
+
+    public override Sight DetachSight()
+    {
+        Sight ToReturn = sight;
+        sight.transform.parent = null;
+        sight = null;
+        readyForUse = false;
+        return ToReturn;
+    }
+
+    public override Stock DetachStock()
+    {
+        Stock ToReturn = stock;
+        stock.transform.parent = null;
+        stock = null;
+        readyForUse = false;
+        return ToReturn;
+    }
+
+    public override UnderBarrel DetachUnderBarrel()
+    {
+        UnderBarrel ToReturn = underBarrel;
+        underBarrel.transform.parent = null;
+        underBarrel = null;
+        readyForUse = false;
+        return ToReturn;
+    }
 
 }

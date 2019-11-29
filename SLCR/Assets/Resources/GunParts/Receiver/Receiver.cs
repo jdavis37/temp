@@ -27,7 +27,7 @@ public abstract class Receiver : GunPart
     public float baseReload;
     //Base Velocity of produced shots before part mods
     public float baseVelocity;
-    
+
     // Damage after weapon mods
     public float damage;
     // Sets per fire after weapon mods
@@ -54,7 +54,7 @@ public abstract class Receiver : GunPart
     public string title = "default";
 
     // Fire delay set so that rounds are per minute. Do not modify from 3000 unless you know what you are doing
-    public  float baseFireDelay = 3000;
+    public float baseFireDelay = 3000;
 
     //Used to track time between shots.
     public float fireDelay = 0;
@@ -108,6 +108,86 @@ public abstract class Receiver : GunPart
     public abstract bool BuildGun();
 
     public abstract void CatalogParts();
+
+    public virtual bool Attach(AmmoType input)
+    {
+        return false;
+    }
+
+    public virtual bool Attach(Barrel input)
+    {
+        return false;
+    }
+
+    public virtual bool Attach(Caliber input)
+    {
+        return false;
+    }
+
+    public virtual bool Attach(CyclicModifier input)
+    {
+        return false;
+    }
+
+    public virtual bool Attach(Magazine input)
+    {
+        return false;
+    }
+
+    public virtual bool Attach(Sight input)
+    {
+        return false;
+    }
+
+    public virtual bool Attach(Stock input)
+    {
+        return false;
+    }
+
+    public virtual bool Attach(UnderBarrel input)
+    {
+        return false;
+    }
+
+    public virtual AmmoType DetachAmmoType()
+    {
+        return RollAmmo();
+    }
+
+    public virtual Barrel Barrel()
+    {
+        return RollBarrel();
+    }
+
+    public virtual Caliber Caliber()
+    {
+        return RollCaliber();
+    }
+
+    public virtual CyclicModifier DetachCyclicModifier()
+    {
+        return RollCyclicModifier();
+    }
+
+    public virtual Magazine DetachMagazine()
+    {
+        return RollMagazine();
+    }
+
+    public virtual Sight DetachSight()
+    {
+        return RollSight();
+    }
+
+    public virtual Stock DetachStock()
+    {
+        return RollStock();
+    }
+
+    public virtual UnderBarrel DetachUnderBarrel()
+    {
+        return RollUnderBarrel();
+    }
 
     /**
    * @pre: N/A.
