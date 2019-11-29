@@ -15,18 +15,11 @@ public class Character : MonoBehaviour {
     public bool hit = false;
     // Movement speed of the character
     public float speed = 10.0f;
-    public float meleeDamage = 5f;
-
-    public GameObject player;
-    public float distance = 0;
-    public int hitRadius = 3;
 
     //Character's RigidBody
     public Rigidbody rb;
     //Character's Transform
     public Transform tr;
-
-    public PlayerController gPlayer;
 
     /**
    * @pre: N/A.
@@ -38,7 +31,6 @@ public class Character : MonoBehaviour {
         maxHealth = health;
         rb = this.GetComponent("Rigidbody2D") as Rigidbody;
         tr = this.GetComponent("Transform") as Transform;
-        gPlayer = GetComponent("PlayerController") as PlayerController;
     }
 
     /**
@@ -49,22 +41,15 @@ public class Character : MonoBehaviour {
    */
     public virtual void Update ()
     {
-        
         if (health == 0)
         {
             Object.Destroy(gameObject);
         }
         
-
         if (hit)
         {
             hit = false;
         }
-        if (Vector3.Distance(player.transform.position, tr.position) <= hitRadius)
-        {
-            Invoke("MeleeAttack", 3);
-        }
-
     }
 
     public virtual void FixedUpdate()
@@ -103,16 +88,6 @@ public class Character : MonoBehaviour {
         result = new Vector2(Mathf.Cos(angle) * length, Mathf.Sin(angle) * length);
         Debug.Log(result.x + " " + result.y);
         return result;
-    }
-
-    public void MeleeAttack()
-    {
-            gPlayer.ChangeHealth(-meleeDamage);
-    }
-
-    public void MeleeCooldown()
-    {
-
     }
 
 }

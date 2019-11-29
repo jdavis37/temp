@@ -76,7 +76,7 @@ public class ProjectileController : MonoBehaviour
         }
         else if (other.tag == "Patrol")
         {
-            other.GetComponent<Character>().ChangeHealth(-damage);
+            other.GetComponent<PatrolController>().ChangeHealth(-damage);
             Destroy(gameObject);
         }
 
