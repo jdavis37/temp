@@ -218,7 +218,7 @@ public class PlayerController : Character
             Look();
             Movement(Input.GetAxisRaw("ForwardBack") * speed, Input.GetAxisRaw("RightLeft") * speed);
         }
-            
+
         // Check for movement and facing direction
         if (!grounded)
         {
@@ -228,7 +228,7 @@ public class PlayerController : Character
 
         if (health > 0)
         {
-            if(paused)
+            if (paused)
             {
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -385,10 +385,10 @@ public class PlayerController : Character
                     }
                 }
 
-               
+
             }
             //if (equipedWeapon.title != null)
-               // WeaponTextUI.text = equipedWeapon.title;
+            // WeaponTextUI.text = equipedWeapon.title;
 
         }
     }
@@ -417,7 +417,7 @@ public class PlayerController : Character
                 Quaternion derp = Quaternion.Euler(cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
                 equipedWeapon.HoldFire(transform.position, derp);
                 holdFire = true;
-                
+
             }
             else if (Input.GetAxisRaw("Fire") == 0 && holdFire)
             {
@@ -438,12 +438,14 @@ public class PlayerController : Character
 
             if (Input.GetAxisRaw("Reload") == 1 && reloadHeld == 0)
             {
+                equipedWeapon.DetachBarrel();
+                equipedWeapon.Attach(inventory.TakeBarrelFromInventory(1));
                 equipedWeapon.ReloadMag();
             }
 
 
         }
-        
+
     }
 
     /**
@@ -456,8 +458,8 @@ public class PlayerController : Character
     {
         if (defaultWeapon != null)
         {
-           // defaultWeapon.Interupt();
-           // secondWeapon.Interupt();
+            // defaultWeapon.Interupt();
+            // secondWeapon.Interupt();
             //thirdWeapon.Interupt();
         }
 
@@ -511,7 +513,7 @@ public class PlayerController : Character
     {
         if (Input.GetAxisRaw("Jump") < 0)
         {
-           // rb.gravityScale = gravFast;
+            // rb.gravityScale = gravFast;
         }
 
         else if (Input.GetAxisRaw("Jump") > 0)
@@ -521,7 +523,7 @@ public class PlayerController : Character
 
         else
         {
-           // rb.gravityScale = gravNormal;
+            // rb.gravityScale = gravNormal;
         }
     }
 
@@ -535,7 +537,7 @@ public class PlayerController : Character
     public void Movement(float forwardBack, float leftRight)
     {
         if (rb != null)
-            rb.velocity = new Quaternion(0,rb.rotation.y,0,rb.rotation.w) * new Vector3(leftRight, rb.velocity.y, forwardBack);
+            rb.velocity = new Quaternion(0, rb.rotation.y, 0, rb.rotation.w) * new Vector3(leftRight, rb.velocity.y, forwardBack);
     }
 
     /**
@@ -563,7 +565,7 @@ public class PlayerController : Character
    */
     public void Teleport(Vector3 pos)
     {
-        
+
     }
 
     /**
@@ -889,7 +891,7 @@ public class PlayerController : Character
         if (iFrames > 0)
         {
             iFrames--;
-        }      
+        }
     }
 
     /**
@@ -900,11 +902,11 @@ public class PlayerController : Character
    */
     public void GunID()
     {
-        if(defaultWeapon != null)
+        if (defaultWeapon != null)
         {
             if (defaultWeapon.baseFireRate >= 250 && defaultWeapon.baseFireRate < 350)
             {
-                if(defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
+                if (defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
                 {
                     WeaponTextUI.text = "Automatic Rifle";
                 }

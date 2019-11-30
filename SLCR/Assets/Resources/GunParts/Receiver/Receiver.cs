@@ -154,12 +154,12 @@ public abstract class Receiver : GunPart
         return RollAmmo();
     }
 
-    public virtual Barrel Barrel()
+    public virtual Barrel DetachBarrel()
     {
         return RollBarrel();
     }
 
-    public virtual Caliber Caliber()
+    public virtual Caliber DetachCaliber()
     {
         return RollCaliber();
     }
