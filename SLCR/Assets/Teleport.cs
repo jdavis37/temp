@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RestRoomTeleport : MonoBehaviour
+public class Teleport : MonoBehaviour
 {
     public Transform Destination;
 
