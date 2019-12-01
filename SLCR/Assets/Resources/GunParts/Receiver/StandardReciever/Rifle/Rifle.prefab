@@ -134,15 +134,12 @@ MonoBehaviour:
   fireDelay: 0
   readyForUse: 0
   buildOnStart: 0
-  ammo: {fileID: -3373207611797783133, guid: 5dc3cf7a2026c174dbf91950e3c91a04, type: 3}
-  barrel: {fileID: -7341923663976937216, guid: 4c3e29fba139f484a916a090b7595a8f, type: 3}
-  caliber: {fileID: 1305805376074184596, guid: fe192ab12cea8114296516e6af2da891, type: 3}
-  cyclicModifier: {fileID: 2642872137314781349, guid: 9bb8e212092a40946bd5646dfc19503b,
-    type: 3}
-  magazine: {fileID: 2458445912798739929, guid: 5582415a71b46ea42bd7975d5a580b7f,
-    type: 3}
-  sight: {fileID: 8194367502292406995, guid: a9506385d585a004dbe786a23490a749, type: 3}
-  stock: {fileID: -8807269419761967925, guid: 802e53809dcf790439355146372e0996, type: 3}
-  underBarrel: {fileID: 4406505961642769487, guid: ced4e611610d2f74f8fde85024e997d5,
-    type: 3}
+  ammo: {fileID: 0}
+  barrel: {fileID: 0}
+  caliber: {fileID: 0}
+  cyclicModifier: {fileID: 0}
+  magazine: {fileID: 0}
+  sight: {fileID: 0}
+  stock: {fileID: 0}
+  underBarrel: {fileID: 0}
   fireDamage: 0

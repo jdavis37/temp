@@ -97,6 +97,7 @@ public abstract class StandardReceiver : Receiver
 
     public override bool BuildGun()
     {
+        parts = new GunPart[NUM_PARTS];
         ammo = Instantiate(RollAmmo(), this.transform);
         barrel = Instantiate(RollBarrel(), this.transform);
         caliber = Instantiate(RollCaliber(), this.transform);

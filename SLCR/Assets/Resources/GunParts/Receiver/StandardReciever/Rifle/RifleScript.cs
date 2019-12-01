@@ -16,10 +16,6 @@ public class RifleScript : StandardReceiver
     {
         base.Start();
         parts = new GunPart[NUM_PARTS];
-        BuildGun();
-        CalculateStats();
-
-
     }
 
     // Update is called once per frame
