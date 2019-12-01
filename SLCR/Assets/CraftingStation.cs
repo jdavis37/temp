@@ -45,7 +45,11 @@ public class CraftingStation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CalcStats(loadedGun);
+        if (player.inventory.builtGuns[0] != null)
+        {
+            CalcStats(loadedGun);
+            loadedGun = player.inventory.builtGuns[Guns.value];
+        }
         
     }
 
@@ -101,17 +105,50 @@ public class CraftingStation : MonoBehaviour
 
     public void BuildGun()
     {
-        player.inventory.receivers[receivers.value].Attach(player.inventory.TakeAmmoTypeFromInventory(ammos.value));
-        player.inventory.receivers[receivers.value].Attach(player.inventory.TakeBarrelFromInventory(barrels.value));
-        player.inventory.receivers[receivers.value].Attach(player.inventory.TakeCaliberFromInventory(calibers.value));
-        player.inventory.receivers[receivers.value].Attach(player.inventory.TakeCyclicModifierFromInventory(cyclicModifiers.value));
-        player.inventory.receivers[receivers.value].Attach(player.inventory.TakeMagazineFromInventory(magazines.value));
-        player.inventory.receivers[receivers.value].Attach(player.inventory.TakeSightFromInventory(sights.value));
-        player.inventory.receivers[receivers.value].Attach(player.inventory.TakeStockFromInventory(stocks.value));
-        player.inventory.receivers[receivers.value].Attach(player.inventory.TakeStockFromInventory(underBarrels.value));
-        player.inventory.receivers[receivers.value].readyForUse = true;
+        if (
+            player.inventory.ammoTypes.Count > 0 &&
+            player.inventory.barrels.Count > 0 &&
+            player.inventory.calibers.Count > 0 &&
+            player.inventory.cyclicModifiers.Count > 0 &&
+            player.inventory.magazines.Count > 0 &&
+            player.inventory.sights.Count > 0 &&
+            player.inventory.stocks.Count > 0 &&
+            player.inventory.underBarrels.Count > 0 &&
+            player.inventory.receivers.Count > 0
+            )
+        {
+            player.inventory.receivers[receivers.value].Attach(player.inventory.TakeAmmoTypeFromInventory(ammos.value));
+            player.inventory.receivers[receivers.value].Attach(player.inventory.TakeBarrelFromInventory(barrels.value));
+            player.inventory.receivers[receivers.value].Attach(player.inventory.TakeCaliberFromInventory(calibers.value));
+            player.inventory.receivers[receivers.value].Attach(player.inventory.TakeCyclicModifierFromInventory(cyclicModifiers.value));
+            player.inventory.receivers[receivers.value].Attach(player.inventory.TakeMagazineFromInventory(magazines.value));
+            player.inventory.receivers[receivers.value].Attach(player.inventory.TakeSightFromInventory(sights.value));
+            player.inventory.receivers[receivers.value].Attach(player.inventory.TakeStockFromInventory(stocks.value));
+            player.inventory.receivers[receivers.value].Attach(player.inventory.TakeUnderBarrelFromInventory(underBarrels.value));
+            player.inventory.receivers[receivers.value].readyForUse = true;
 
-        player.inventory.builtGuns.Add(player.inventory.TakeReceiverFromInventory(receivers.value));
+            player.inventory.builtGuns.Add(player.inventory.TakeReceiverFromInventory(receivers.value));
+        }
+
+    }
+
+    public void RecycleGun()
+    {
+        if (player.inventory.builtGuns.Count > 1)
+        {
+            loadedGun.readyForUse = false;
+            player.inventory.AddToInventory(loadedGun.DetachAmmoType());
+            player.inventory.AddToInventory(loadedGun.DetachBarrel());
+            player.inventory.AddToInventory(loadedGun.DetachCaliber());
+            player.inventory.AddToInventory(loadedGun.DetachCyclicModifier());
+            player.inventory.AddToInventory(loadedGun.DetachMagazine());
+            player.inventory.AddToInventory(loadedGun.DetachSight());
+            player.inventory.AddToInventory(loadedGun.DetachStock());
+            player.inventory.AddToInventory(loadedGun.DetachUnderBarrel());
+            player.inventory.AddToInventory(player.inventory.TakeBuiltGunFromInventory(Guns.value));
+        }
+        
+        
     }
 
     List<string> ConvertToStringList(List<AmmoType> input)
