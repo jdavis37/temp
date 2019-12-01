@@ -158,6 +158,7 @@ public abstract class StandardReceiver : Receiver
         cyclicModifier = input;
         input.transform.position = transform.position;
         input.transform.parent = transform;
+        input.receiver = this;
         return false;
     }
 
@@ -190,6 +191,7 @@ public abstract class StandardReceiver : Receiver
         underBarrel = input;
         input.transform.position = transform.position;
         input.transform.parent = transform;
+        input.receiver = this;
         return false;
     }
 

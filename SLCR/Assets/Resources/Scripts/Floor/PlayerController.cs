@@ -157,6 +157,8 @@ public class PlayerController : Character
    */
     public override void Update()
     {
+        HeldCheck();
+
         if (!menuEnabled && !PlayerIsDead)
         {   
             Attack();
@@ -164,7 +166,7 @@ public class PlayerController : Character
             Invulnerability();
         }
 
-        HeldCheck();
+        
 
         if (Input.GetAxisRaw("Interact") == 1 && interactHeld == 0 && !paused)
         {
@@ -315,60 +317,15 @@ public class PlayerController : Character
     {
         if (defaultWeapon != null)
         {
-            if (weaponStyle == 0)
-            {
-                if (selectWeaponBackHeld == 0 && selectWeaponForwardHeld == 0)
-                {
-                    if (
-                                    Input.GetAxisRaw("Fire") > 0 ||
-                                    Input.GetAxisRaw("AltFire") > 0 ||
-                                    Input.GetAxisRaw("ADS") > 0 ||
-                                    (Input.GetAxisRaw("SelectWeaponBack") > 0 && equipedWeapon == secondWeapon) ||
-                                    (Input.GetAxisRaw("SelectWeaponForward") > 0 && equipedWeapon == thirdWeapon)
-                                    )
-                    {
-                        equipedWeapon = defaultWeapon;
-                    }
-
-                    else if (Input.GetAxisRaw("SelectWeaponBack") > 0)
-                    {
-
-                        equipedWeapon = secondWeapon;
-
-                    }
-                    else if (Input.GetAxisRaw("SelectWeaponForward") > 0)
-                    {
-                        equipedWeapon = thirdWeapon;
-                    }
-                }
-
-            }
-            else if (weaponStyle == 1)
-            {
-                if (Input.GetAxisRaw("SelectWeaponBack") > 0)
-                {
-
-                    equipedWeapon = secondWeapon;
-
-                }
-                else if (Input.GetAxisRaw("SelectWeaponForward") > 0)
-                {
-                    equipedWeapon = thirdWeapon;
-                }
-                else
-                {
-                    equipedWeapon = defaultWeapon;
-                }
-
-            }
-            else if (weaponStyle == 2)
-            {
-                if (Input.GetAxisRaw("SelectWeaponBack") > 0 && selectWeaponBackHeld == 0)
+            
+           
+                if (Input.GetAxisRaw("SelectWeaponBack") == 1 && selectWeaponBackHeld == 0)
                 {
                     if (equipedWeapon == defaultWeapon)
                     {
                         equipedWeapon = thirdWeapon;
                     }
+                    
                     else if (equipedWeapon == secondWeapon)
                     {
                         equipedWeapon = defaultWeapon;
@@ -377,8 +334,10 @@ public class PlayerController : Character
                     {
                         equipedWeapon = secondWeapon;
                     }
+                    
                 }
-                if (Input.GetAxisRaw("SelectWeaponForward") > 0 && selectWeaponForwardHeld == 0)
+                
+                else if (Input.GetAxisRaw("SelectWeaponForward") == 1 && selectWeaponForwardHeld == 0)
                 {
                     if (equipedWeapon == defaultWeapon)
                     {
@@ -393,9 +352,7 @@ public class PlayerController : Character
                         equipedWeapon = defaultWeapon;
                     }
                 }
-
-
-            }
+                
             //if (equipedWeapon.title != null)
             // WeaponTextUI.text = equipedWeapon.title;
 
@@ -447,8 +404,6 @@ public class PlayerController : Character
 
             if (Input.GetAxisRaw("Reload") == 1 && reloadHeld == 0)
             {
-                equipedWeapon.DetachBarrel();
-                equipedWeapon.Attach(inventory.TakeBarrelFromInventory(1));
                 equipedWeapon.ReloadMag();
             }
 
@@ -821,24 +776,7 @@ public class PlayerController : Character
    * @param: derp is new default Weapon.
    * @return: None.
    */
-    public void Equip(Receiver derp)
-    {
-        if (defaultWeapon == null)
-        {
-            defaultWeapon = derp;
-            secondWeapon = derp;
-            thirdWeapon = derp;
-            equipedWeapon = derp;
-        }
-        else if (defaultWeapon == secondWeapon)
-        {
-            secondWeapon = derp;
-        }
-        else if (defaultWeapon == thirdWeapon)
-        {
-            thirdWeapon = derp;
-        }
-    }
+   
 
     /**
    * @pre: N/A.
@@ -925,13 +863,7 @@ public class PlayerController : Character
     {
         if (defaultWeapon != null)
         {
-            if (defaultWeapon.baseFireRate >= 250 && defaultWeapon.baseFireRate < 350)
-            {
-                if (defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
-                {
-                    WeaponTextUI.text = equipedWeapon.ID;
-                }
-            }
+              WeaponTextUI.text = equipedWeapon.ID;
         }
     }
 

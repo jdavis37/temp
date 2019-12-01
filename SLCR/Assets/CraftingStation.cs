@@ -17,6 +17,7 @@ public class CraftingStation : MonoBehaviour
     public Dropdown stocks;
     public Dropdown underBarrels;
     public Dropdown Guns;
+    public InputField nameInput;
     // Damage after weapon mods
     public Text damage;
     // Sets per fire after weapon mods
@@ -125,7 +126,9 @@ public class CraftingStation : MonoBehaviour
             player.inventory.receivers[receivers.value].Attach(player.inventory.TakeSightFromInventory(sights.value));
             player.inventory.receivers[receivers.value].Attach(player.inventory.TakeStockFromInventory(stocks.value));
             player.inventory.receivers[receivers.value].Attach(player.inventory.TakeUnderBarrelFromInventory(underBarrels.value));
+            player.inventory.receivers[receivers.value].ID = nameInput.text;
             player.inventory.receivers[receivers.value].readyForUse = true;
+
 
             player.inventory.builtGuns.Add(player.inventory.TakeReceiverFromInventory(receivers.value));
         }
@@ -147,8 +150,21 @@ public class CraftingStation : MonoBehaviour
             player.inventory.AddToInventory(loadedGun.DetachUnderBarrel());
             player.inventory.AddToInventory(player.inventory.TakeBuiltGunFromInventory(Guns.value));
         }
-        
-        
+    }
+
+    public void EquipWeaponFirst()
+    {
+        player.defaultWeapon = loadedGun;
+    }
+
+    public void EquipWeaponSecond()
+    {
+        player.secondWeapon = loadedGun;
+    }
+
+    public void EquipWeaponThird()
+    {
+        player.thirdWeapon = loadedGun;
     }
 
     List<string> ConvertToStringList(List<AmmoType> input)

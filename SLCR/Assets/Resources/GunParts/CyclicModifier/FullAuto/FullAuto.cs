@@ -5,6 +5,7 @@ using UnityEngine;
 public class FullAuto : CyclicModifier
 {
     //fireRateMod for calculating stats
+
     public float fireRateMod = 1;
 
     // Start is called before the first frame update
