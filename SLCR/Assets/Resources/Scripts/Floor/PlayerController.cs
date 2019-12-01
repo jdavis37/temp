@@ -166,7 +166,25 @@ public class PlayerController : Character
             Invulnerability();
         }
 
-        
+        if (!defaultWeapon.readyForUse)
+        {
+            if (secondWeapon.readyForUse)
+                defaultWeapon = secondWeapon;
+            else if (thirdWeapon.readyForUse)
+                defaultWeapon = thirdWeapon;
+        }
+        if (!secondWeapon.readyForUse)
+        {
+            secondWeapon = defaultWeapon;
+        }
+        if (!thirdWeapon.readyForUse)
+        {
+            thirdWeapon = defaultWeapon;
+        }
+        if (!equipedWeapon.readyForUse)
+        {
+            equipedWeapon = defaultWeapon;
+        }
 
         if (Input.GetAxisRaw("Interact") == 1 && interactHeld == 0 && !paused)
         {
@@ -227,6 +245,8 @@ public class PlayerController : Character
             base.FixedUpdate();
 
         }
+
+
 
         // Check for movement and facing direction
         if (!grounded)
@@ -317,9 +337,9 @@ public class PlayerController : Character
     {
         if (defaultWeapon != null)
         {
-            
-           
-                if (Input.GetAxisRaw("SelectWeaponBack") == 1 && selectWeaponBackHeld == 0)
+
+
+            if (Input.GetAxisRaw("SelectWeaponBack") == 1 && selectWeaponBackHeld == 0)
                 {
                     if (equipedWeapon == defaultWeapon)
                     {
