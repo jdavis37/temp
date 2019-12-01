@@ -28,6 +28,7 @@ public class PlayerController : Character
     private float selectPrior = 0;
     private float submitPrior = 0;
     private float reloadPrior = 0;
+    private float interactPrior = 0;
     public int rightLeftHeld = 0;
     public int forwardBackHeld = 0;
     public int jumpHeld = 0;
@@ -39,6 +40,7 @@ public class PlayerController : Character
     public int selectWeaponForwardHeld = 0;
     public int selectHeld = 0;
     public int submitHeld = 0;
+    public int interactHeld = 0;
 
     // If the player is on the ground
     public bool grounded = true;
@@ -446,6 +448,11 @@ public class PlayerController : Character
 
         }
 
+        if (Input.GetAxisRaw("Interact") == 1 && interactHeld == 0)
+        {
+            Interact();
+        }
+
     }
 
     /**
@@ -697,6 +704,15 @@ public class PlayerController : Character
             submitHeld = 0;
         }
 
+        if (interactPrior == Input.GetAxisRaw("Interact") && interactPrior != 0)
+        {
+            interactHeld = interactHeld + 1;
+        }
+        else
+        {
+            interactHeld = 0;
+        }
+
         rightLeftPrior = Input.GetAxisRaw("RightLeft");
         forwardBackPrior = Input.GetAxisRaw("ForwardBack");
         jumpPrior = Input.GetAxisRaw("Jump");
@@ -708,6 +724,7 @@ public class PlayerController : Character
         selectWeaponForwardPrior = Input.GetAxisRaw("SelectWeaponForward");
         selectPrior = Input.GetAxisRaw("Select");
         submitPrior = Input.GetAxisRaw("Submit");
+        interactPrior = Input.GetAxisRaw("Interact");
 
     }
 
@@ -908,10 +925,29 @@ public class PlayerController : Character
             {
                 if (defaultWeapon.baseDamage >= 20 && defaultWeapon.baseDamage < 40)
                 {
-                    WeaponTextUI.text = "Automatic Rifle";
+                    WeaponTextUI.text = equipedWeapon.ID;
                 }
             }
         }
+    }
+
+    public void Interact()
+    {
+        Quaternion derpRot = Quaternion.Euler(cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
+        Vector3 derp = new  Vector3 (cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
+        RaycastHit Rayinfo;
+        LayerMask mask = LayerMask.GetMask("Interactable");
+        Debug.Log(mask.value);
+        Debug.DrawRay(transform.position, transform.forward,Color.green,20);
+        if (Physics.Raycast(transform.position, transform.forward, out Rayinfo, 6, mask))
+        {
+            
+            if (Rayinfo.transform.CompareTag("Interactable"))
+            {
+                Rayinfo.transform.GetComponent<Interaction>().Test();
+            }
+        }
+        
     }
 }
 
