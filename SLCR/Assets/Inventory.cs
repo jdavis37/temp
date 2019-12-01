@@ -214,26 +214,31 @@ public class Inventory : MonoBehaviour
     public void AddToInventory(AmmoType input)
     {
         ammoTypes.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(Barrel input)
     {
         barrels.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(Caliber input)
     {
         calibers.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(CyclicModifier input)
     {
         cyclicModifiers.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(Magazine input)
     {
         magazines.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(Receiver input)
@@ -242,26 +247,31 @@ public class Inventory : MonoBehaviour
             builtGuns.Add(input);
         else
             receivers.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(Sight input)
     {
         sights.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(Stock input)
     {
         stocks.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(UnderBarrel input)
     {
         underBarrels.Add(input);
+        input.transform.parent = transform;
     }
 
     public void AddToInventory(GunPart input)
     {
         otherParts.Add(input);
+        input.transform.parent = transform;
     }
 
    

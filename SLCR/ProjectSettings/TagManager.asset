@@ -18,6 +18,7 @@ TagManager:
   - Undefined
   - Explosive
   - Patrol
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Interactable
   - 
   - 
   - 
