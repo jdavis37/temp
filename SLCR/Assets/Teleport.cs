@@ -20,8 +20,10 @@ public class Teleport : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        other.transform.position = Destination.transform.position;
-        other.transform.position = Destination.transform.position;
-    }
-    
+        if(other.gameObject.tag == "Player")
+        {
+            other.transform.position = Destination.transform.position;
+            other.transform.rotation = Destination.transform.rotation;
+        }
+    }    
 }
