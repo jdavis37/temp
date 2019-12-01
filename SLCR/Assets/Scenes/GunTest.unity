@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 152302575}
   - component: {fileID: 152302574}
   - component: {fileID: 152302580}
+  - component: {fileID: 152302581}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Hostile
@@ -444,6 +445,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &152302581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152302573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710ac727d3f9f7741a97f110baacf575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &157492374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3010,11 +3023,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904556588}
     m_Modifications:
-    - target: {fileID: 6526195634044680155, guid: 9606e3674e995124c80b27ca18a7e6fe,
-        type: 3}
-      propertyPath: m_Name
-      value: Rifle (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 7520480417376893693, guid: 9606e3674e995124c80b27ca18a7e6fe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3069,6 +3077,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526195634044680155, guid: 9606e3674e995124c80b27ca18a7e6fe,
+        type: 3}
+      propertyPath: m_Name
+      value: Rifle (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9606e3674e995124c80b27ca18a7e6fe, type: 3}
