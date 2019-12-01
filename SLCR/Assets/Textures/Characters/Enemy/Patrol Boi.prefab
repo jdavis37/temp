@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -5108595751108009912}
   - component: {fileID: 8828175008528499322}
   - component: {fileID: 7405499311930210983}
-  - component: {fileID: -4868891740757900587}
+  - component: {fileID: 103545031641328027}
   m_Layer: 0
   m_Name: Patrol Boi
   m_TagString: Patrol
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206761444704761456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 736cbec7be6b7f14dbdcd5a3d605ec56, type: 3}
   m_Name: 
@@ -185,15 +185,9 @@ MonoBehaviour:
   maxHealth: 0
   hit: 0
   speed: 10
-  meleeDamage: 5
-  player: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720, type: 3}
-  patrol: {fileID: 0}
-  distance: 0
-  hitRadius: 3
   rb: {fileID: 0}
   tr: {fileID: 0}
-  gPlayer: {fileID: 0}
---- !u!114 &-4868891740757900587
+--- !u!114 &103545031641328027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,6 +196,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 206761444704761456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84f8a478b35abe4890e0248206c736b, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c132f94c350124999f0f5e563c1961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxJump: 0
+  health: 100
+  maxHealth: 0
+  hit: 0
+  speed: 10
+  rb: {fileID: 0}
+  tr: {fileID: 0}
+  distance: 0
+  player: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720, type: 3}
+  ai: {fileID: 0}
+  hitRadius: 3
+  meleeDamage: 4
+  invokeRunning: 0

@@ -7920,15 +7920,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -4868891740757900587, guid: b0dd362a141b6354ea3398ccb34bc022,
-        type: 3}
-      propertyPath: health
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 206761444704761456, guid: b0dd362a141b6354ea3398ccb34bc022,
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -4868891740757900587, guid: b0dd362a141b6354ea3398ccb34bc022,
+        type: 3}
+      propertyPath: health
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8755120456415228167, guid: b0dd362a141b6354ea3398ccb34bc022,
         type: 3}
@@ -8009,6 +8009,26 @@ PrefabInstance:
     - target: {fileID: 7405499311930210983, guid: b0dd362a141b6354ea3398ccb34bc022,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 103545031641328027, guid: b0dd362a141b6354ea3398ccb34bc022,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 690112364}
+    - target: {fileID: 103545031641328027, guid: b0dd362a141b6354ea3398ccb34bc022,
+        type: 3}
+      propertyPath: ai
+      value: 
+      objectReference: {fileID: 1804362758}
+    - target: {fileID: 103545031641328027, guid: b0dd362a141b6354ea3398ccb34bc022,
+        type: 3}
+      propertyPath: meleeDamage
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 103545031641328027, guid: b0dd362a141b6354ea3398ccb34bc022,
+        type: 3}
+      propertyPath: invokeRunning
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -22162,6 +22182,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1804362758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 206761444704761456, guid: b0dd362a141b6354ea3398ccb34bc022,
+    type: 3}
+  m_PrefabInstance: {fileID: 447227570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1856330994
 Mesh:
   m_ObjectHideFlags: 0
@@ -25403,6 +25429,6 @@ PrefabInstance:
       objectReference: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720,
         type: 3}
     m_RemovedComponents:
-    - {fileID: 2858866809715480922, guid: 9a3bcd0f7f596cc478bc39138e87dd5c, type: 3}
+    - {fileID: 0}
     - {fileID: 5688265284295322046, guid: 9a3bcd0f7f596cc478bc39138e87dd5c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9a3bcd0f7f596cc478bc39138e87dd5c, type: 3}

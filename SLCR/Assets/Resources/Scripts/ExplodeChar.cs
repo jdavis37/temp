@@ -12,8 +12,11 @@ public class ExplodeChar : Character
     public GameObject player;
 
     public float triggerExplosion = 0;
-
+    public float explosionRadius = 10;
+    public float explosionDamage = 50;
     private ParticleSystem explosion;
+    private Vector3 myPosition;
+    private float explosiveDamage = 50;
 
     /**
    * @pre: N/A.
@@ -35,6 +38,7 @@ public class ExplodeChar : Character
  
     public override void Update()
     {
+        myPosition = gameObject.transform.position;
         if (health == 0)
         {
             nav.isStopped = true;
@@ -93,7 +97,27 @@ public class ExplodeChar : Character
         //AreaDamageEnemies(player.transform.position, explodingRadius, 50);
         explosion = this.GetComponent<ParticleSystem>();
         explosion.Play();
+        Collider[] colliders = Physics.OverlapSphere(myPosition, explosionRadius);
+        float proximity;
+        float dropoff;
+        for(int i = 0; i < colliders.Length; i++)
+        {
+            proximity = Vector3.Distance(myPosition, colliders[i].transform.position);
+            dropoff = proximity / explosionRadius;
+            if(colliders[i].gameObject.CompareTag("Patrol"))
+                colliders[i].GetComponent<PatrolController>().ChangeHealth(CalculateExplosiveDamage(50, dropoff));
+            else if(colliders[i].gameObject.CompareTag("Explosive"))
+                colliders[i].GetComponent<ExplodeChar>().ChangeHealth(CalculateExplosiveDamage(50, dropoff));
+            else if(colliders[i].gameObject.CompareTag("Player"))
+                colliders[i].GetComponent<PlayerController>().ChangeHealth(CalculateExplosiveDamage(50, dropoff));
+        }
         Destroy(gameObject, explosion.duration);
+
+    }
+
+    private float CalculateExplosiveDamage(float damage, float normal)
+    {
+        return (-(damage * normal));
     }
 
 }
