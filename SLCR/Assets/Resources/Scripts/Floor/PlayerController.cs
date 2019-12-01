@@ -107,7 +107,8 @@ public class PlayerController : Character
     // Pause Game Flag.
     public Text pauseMenuText;
     // Pause Menu / Start Menu Flag.
-    bool paused;
+    public bool paused;
+    public bool menuEnabled;
 
     // UI Panel to pop up when Player health is below Zero.
     public GameObject DeathScreen;
@@ -124,7 +125,7 @@ public class PlayerController : Character
         reticle.SetActive(false);
         PauseMenu.SetActive(true);
         resumeButton.onClick.AddListener(PauseMenuController);
-        paused = true;
+        menuEnabled = true;
         base.Start();
         base.Start();
         jumpsRemaining = maxJump;
@@ -156,14 +157,18 @@ public class PlayerController : Character
    */
     public override void Update()
     {
-        base.Update();
-        if (!paused && !PlayerIsDead)
-        {
-
-            HeldCheck();
+        if (!menuEnabled && !PlayerIsDead)
+        {   
             Attack();
             WeaponSelect();
             Invulnerability();
+        }
+
+        HeldCheck();
+
+        if (Input.GetAxisRaw("Interact") == 1 && interactHeld == 0 && !paused)
+        {
+            Interact();
         }
 
         if (hoverTime == 0)
@@ -197,7 +202,7 @@ public class PlayerController : Character
         }
 
 
-        if (!attacking && !paused && !PlayerIsDead)
+        if (!attacking && !menuEnabled && !PlayerIsDead)
         {
             Jump();
             GravControl();
@@ -213,12 +218,12 @@ public class PlayerController : Character
    */
     public override void FixedUpdate()
     {
-        base.FixedUpdate();
-
-        if (!paused && !PlayerIsDead)
+        if (!menuEnabled && !PlayerIsDead)
         {
             Look();
             Movement(Input.GetAxisRaw("ForwardBack") * speed, Input.GetAxisRaw("RightLeft") * speed);
+            base.FixedUpdate();
+
         }
 
         // Check for movement and facing direction
@@ -230,7 +235,7 @@ public class PlayerController : Character
 
         if (health > 0)
         {
-            if (paused)
+            if (menuEnabled)
             {
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -267,6 +272,7 @@ public class PlayerController : Character
         if (paused)
         {
             PauseMenu.SetActive(false);
+            menuEnabled = false;
             paused = false;
             resumeButton.interactable = false;
             reticle.SetActive(true);
@@ -278,6 +284,7 @@ public class PlayerController : Character
         {
             pauseMenuText.text = "Game Paused";
             PauseMenu.SetActive(true);
+            menuEnabled = true;
             paused = true;
             resumeButton.interactable = true;
             reticle.SetActive(false);
@@ -448,10 +455,7 @@ public class PlayerController : Character
 
         }
 
-        if (Input.GetAxisRaw("Interact") == 1 && interactHeld == 0)
-        {
-            Interact();
-        }
+        
 
     }
 
@@ -933,6 +937,8 @@ public class PlayerController : Character
 
     public void Interact()
     {
+        menuEnabled = !menuEnabled;
+        /*
         Quaternion derpRot = Quaternion.Euler(cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
         Vector3 derp = new  Vector3 (cam.transform.eulerAngles.x, transform.eulerAngles.y, 0);
         RaycastHit Rayinfo;
@@ -948,6 +954,8 @@ public class PlayerController : Character
             }
         }
         
+    }
+    */
     }
 }
 
