@@ -94,6 +94,13 @@ public class SpawnLoot : MonoBehaviour
         undBar = Instantiate((UnderBarrel)possible[Random.Range(0, possible.Length)]);
     }
 
+    //void spawnHealth()
+    //{
+    //    Object[] possible;
+    //    possible = Resources.LoadAll("Health", typeof(Health));
+    //    Health hea;
+    //    Health = Instantiate((Health)possible[Random.Range(0, possible.Length)]);
+    //}
 
 
 
