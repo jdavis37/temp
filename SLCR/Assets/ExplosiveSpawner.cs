@@ -6,7 +6,6 @@ public class ExplosiveSpawner : MonoBehaviour
 {
     public GameObject TNT;
     public GameObject PAT;
-    public Transform parent;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +16,11 @@ public class ExplosiveSpawner : MonoBehaviour
     // Update is called once per frame
     void ExplosiveSpawning()
     {
-        Instantiate(TNT, gameObject.transform.position, gameObject.transform.rotation, parent);
+        Instantiate(TNT, gameObject.transform.position, gameObject.transform.rotation);
     }
 
     void PatrolSpawning()
     {
-        Instantiate(PAT, gameObject.transform.position, gameObject.transform.rotation, parent);
+        Instantiate(PAT, gameObject.transform.position, gameObject.transform.rotation);
     }
 }

@@ -71,10 +71,10 @@ public class Spawning : MonoBehaviour
         Enemy13 = Instantiate(Enemy, EnemySpawn13.transform.position, EnemySpawn13.transform.rotation);
         Enemy14 = Instantiate(Enemy, EnemySpawn14.transform.position, EnemySpawn14.transform.rotation);
 
-        Explosive1 = Instantiate(Explosive, ExplosiveSpawn1.transform.position, ExplosiveSpawn1.transform.rotation);
+        /*Explosive1 = Instantiate(Explosive, ExplosiveSpawn1.transform.position, ExplosiveSpawn1.transform.rotation);
         Explosive2 = Instantiate(Explosive, ExplosiveSpawn2.transform.position, ExplosiveSpawn2.transform.rotation);
         Explosive3 = Instantiate(Explosive, ExplosiveSpawn3.transform.position, ExplosiveSpawn3.transform.rotation);
-        Explosive4 = Instantiate(Explosive, ExplosiveSpawn4.transform.position, ExplosiveSpawn4.transform.rotation);
+        Explosive4 = Instantiate(Explosive, ExplosiveSpawn4.transform.position, ExplosiveSpawn4.transform.rotation);*/
 
     }
 }
