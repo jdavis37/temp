@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4182e3fddc8d24cb966b6b8c783f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetObject: {fileID: 3371182104481309443, guid: a0d44f3eb10676446989b8a00cc03788,
+  TargetObject: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720,
     type: 3}
 --- !u!195 &-5108595751108009912
 NavMeshAgent:
@@ -162,12 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98e4142432086640b9270fd6f503ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartPoint: {fileID: 0}
-  FinishPoint: {fileID: 0}
-  distFromFinish: 0
+  points:
+  - {fileID: 4765460650389153389, guid: 7700924157f09ff4babaee87b6713cf6, type: 3}
+  - {fileID: 2899332388062870433, guid: ced3976b9eb0d6f4593e7c7c42496ec2, type: 3}
   lookRadius: 4
-  Player: {fileID: 3371182104481309443, guid: a0d44f3eb10676446989b8a00cc03788, type: 3}
-  distanceToPlayer: 0
 --- !u!114 &7405499311930210983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +206,6 @@ MonoBehaviour:
   tr: {fileID: 0}
   distance: 0
   player: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720, type: 3}
-  ai: {fileID: 0}
   hitRadius: 3
   meleeDamage: 4
   invokeRunning: 0

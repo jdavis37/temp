@@ -7,14 +7,10 @@ using UnityEngine.AI;
 public class Patrol : MonoBehaviour
 {
 
-    public GameObject StartPoint; /// Used to track position of starting waypoint (spawn point).
-    public GameObject FinishPoint; /// Used to track position of ending waypoint.
-    public float distFromFinish; /// Distance from an AIs spawn point and waypoint.
-    private NavMeshAgent agent; /// AI.
-    public float lookRadius = 4f; /// Radius AI can detect player.
-    public GameObject Player; /// Red Player GameObject.
-
-    public float distanceToPlayer;
+    public GameObject[] points;
+    private int destPoint = 0;
+    private NavMeshAgent agent;
+    public int lookRadius = 5;
 
 
 
@@ -26,63 +22,41 @@ public class Patrol : MonoBehaviour
       */
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        // = GetComponent<NavMeshAgent>();
     }
 
-
-    /**
-      *@pre Game is launched.
-      *@post Ran first before update. Checks distance an AI from its waypoint and decided which path to follow depending on its distance.
-      *@param None.
-      *@return None.
-      */
     void Start()
     {
-        SwitchPoint();
+        // Disabling auto-braking allows for continuous movement
+        // between points (ie, the agent doesn't slow down as it
+        // approaches a destination point).
         agent.autoBraking = false;
-        //SwitchPoint(distFromFinish);
+
+        GotoNextPoint();
     }
 
 
-    /**
-      *@pre Game is launched and agents are spawned in.
-      *@post Based on the agent's distance, decides which point to travel to. If close to waypoint, goes back to spawn point. If close to spawn point, goes back to waypoint.
-      *@param None.
-      *@return None.
-      */
-    void SwitchPoint()
+    void GotoNextPoint()
     {
-        if (distFromFinish >= 9)
-        {
-            agent.SetDestination(FinishPoint.transform.position);
-        }
-        else if (distFromFinish <= 1)
-        {
-            agent.destination = StartPoint.transform.position;
-        }
+        // Returns if no points have been set up
+        if (points.Length == 0)
+            return;
+
+        // Set the agent to go to the currently selected destination.
+        agent.destination = points[destPoint].transform.position;
+
+        // Choose the next point in the array as the destination,
+        // cycling to the start if necessary.
+        destPoint = (destPoint + 1) % points.Length;
     }
 
 
-    /**
-      *@pre Called every frame. Requires agents to be spawned in.
-      *@post Calls SwitchPoint every frame to check distance. Updates both distance to waypoint and distance to player. If Player comes within an AIs detection radius, AI will follow Player.
-      *If player falls outside the radius as it's being chased, AI will resume patrol path.
-      *@param None.
-      *@return None.
-      */
     void Update()
     {
-        distFromFinish = (agent.transform.position - FinishPoint.transform.position).magnitude;
-        SwitchPoint();
-        distanceToPlayer = (agent.transform.position - Player.transform.position).magnitude;
-
-        if (distanceToPlayer <= lookRadius)
-        {
-            agent.SetDestination(Player.transform.position);
-            agent.autoBraking = true;
-        }
-
-
+        // Choose the next destination point when the agent gets
+        // close to the current one.
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            GotoNextPoint();
     }
 
 

@@ -19,6 +19,7 @@ TagManager:
   - Explosive
   - Patrol
   - Interactable
+  - Waypoint
   layers:
   - Default
   - TransparentFX
