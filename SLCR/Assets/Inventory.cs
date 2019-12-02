@@ -21,8 +21,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddToInventory(test);
-        Instantiate(TakeAmmoTypeFromInventory(0));
+
     }
 
     // Update is called once per frame

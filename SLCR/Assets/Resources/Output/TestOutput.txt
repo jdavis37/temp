@@ -1,0 +1,13 @@
+Adding to an empty list is worrking correctly
+Adding to an non-empty list is worrking correctly
+Taking from a inventory is returning right part
+Taking from a inventory is removing from inventory
+    Inventory seems to be working correctly
+Building a gun does take parts from inventory
+Building a gun does produce a gun properly
+Trying to Recycle the last gun doesn't add parts to inventory
+Trying to recycle the last gun doesn't remove the gun from inventory
+Trying to Recycle gun that isn't last does add parts to inventory
+Trying to Recycle gun that isn't last does remove the gun from inventory
+    Crafting seems to be working correctly
+

@@ -46,7 +46,7 @@ public class CraftingStation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.inventory.builtGuns[0] != null)
+        if (player.inventory.builtGuns.Count != 0)
         {
             CalcStats(loadedGun);
             loadedGun = player.inventory.builtGuns[Guns.value];
@@ -139,7 +139,7 @@ public class CraftingStation : MonoBehaviour
     {
         if (player.inventory.builtGuns.Count > 1)
         {
-            loadedGun.readyForUse = false;
+            player.inventory.builtGuns[Guns.value].readyForUse = false;
             player.inventory.AddToInventory(loadedGun.DetachAmmoType());
             player.inventory.AddToInventory(loadedGun.DetachBarrel());
             player.inventory.AddToInventory(loadedGun.DetachCaliber());
