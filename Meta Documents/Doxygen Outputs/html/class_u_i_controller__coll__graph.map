@@ -1,0 +1,8 @@
+<map id="UIController" name="UIController">
+<area shape="rect" id="node1" title=" " alt="" coords="5,1553,141,1631"/>
+<area shape="rect" id="node2" title=" " alt="" coords="41,5,151,83"/>
+<area shape="rect" id="node4" href="$class_character.html" title=" " alt="" coords="52,395,175,619"/>
+<area shape="rect" id="node6" href="$class_gun_part.html" title=" " alt="" coords="134,132,317,371"/>
+<area shape="rect" id="node3" href="$class_player_controller.html" title=" " alt="" coords="70,1120,237,1491"/>
+<area shape="rect" id="node5" href="$class_receiver.html" title=" " alt="" coords="151,643,327,1013"/>
+</map>

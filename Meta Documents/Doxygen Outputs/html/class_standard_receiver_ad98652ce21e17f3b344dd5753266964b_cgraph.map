@@ -1,0 +1,13 @@
+<map id="StandardReceiver.BuildGun" name="StandardReceiver.BuildGun">
+<area shape="rect" id="node1" title=" " alt="" coords="5,233,185,260"/>
+<area shape="rect" id="node2" href="$class_cyclic_modifier.html#a52819f30bb95ca128cbf742a14c4a214" title=" " alt="" coords="250,5,395,32"/>
+<area shape="rect" id="node3" href="$class_under_barrel.html#a994543038d8337c2415ce159ff86d474" title=" " alt="" coords="257,56,389,83"/>
+<area shape="rect" id="node4" href="$class_receiver.html#a40e6d83ef75ba4e2f4c8f609d033b5e0" title=" " alt="" coords="255,107,390,133"/>
+<area shape="rect" id="node5" href="$class_receiver.html#a814daa7caac7da325759861c82267d97" title=" " alt="" coords="257,157,388,184"/>
+<area shape="rect" id="node6" href="$class_receiver.html#ab7eb0565b7c8618ef0cc663f642d5c6f" title=" " alt="" coords="254,208,391,235"/>
+<area shape="rect" id="node7" href="$class_receiver.html#a1fa6d43415d6e27598732b3eb9c71319" title=" " alt="" coords="233,259,412,285"/>
+<area shape="rect" id="node8" href="$class_receiver.html#a56def19a311c2c5a9a73efcc4e0799f8" title=" " alt="" coords="246,309,399,336"/>
+<area shape="rect" id="node9" href="$class_receiver.html#ae5394390834012e795d79bfbde49920f" title=" " alt="" coords="259,360,386,387"/>
+<area shape="rect" id="node10" href="$class_receiver.html#a43beca580fda3096dfe69c9532584892" title=" " alt="" coords="257,411,388,437"/>
+<area shape="rect" id="node11" href="$class_receiver.html#a023667c1564d68b4ee357d5d4783fb7e" title=" " alt="" coords="240,461,405,488"/>
+</map>
