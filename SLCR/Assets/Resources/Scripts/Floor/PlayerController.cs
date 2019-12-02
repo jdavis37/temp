@@ -117,9 +117,15 @@ public class PlayerController : Character
     // PlayerIsDead Flag.
     bool PlayerIsDead;
 
+    // UI Panel to pop up when Player wins the game.
+    public GameObject WinScreen;
+
+    public Button restartButton;
+
     // Use this for initialization
     public override void Start()
     {
+        WinScreen.SetActive(false);
         DeathScreen.SetActive(false);
         playerHUD.SetActive(false);
         reticle.SetActive(false);
@@ -129,6 +135,7 @@ public class PlayerController : Character
         base.Start();
         base.Start();
         jumpsRemaining = maxJump;
+        restartButton.interactable = true;
         rb = this.GetComponent("Rigidbody") as Rigidbody;
         tr = this.GetComponent("Transform") as Transform;
         //TimeComboUI.text = "ComboTime: " + timeCombo.ToString();
