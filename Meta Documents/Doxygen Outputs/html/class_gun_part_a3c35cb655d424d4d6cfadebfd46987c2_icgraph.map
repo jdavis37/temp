@@ -1,0 +1,6 @@
+<map id="GunPart.GetVelocityMod" name="GunPart.GetVelocityMod">
+<area shape="rect" id="node1" title=" " alt="" coords="592,5,759,32"/>
+<area shape="rect" id="node2" href="$class_receiver.html#af263a376677651423388a5fbe2e11902" title=" " alt="" coords="368,5,544,32"/>
+<area shape="rect" id="node3" href="$class_receiver.html#a05e544bc0737608ce350bb6643bd2a58" title=" " alt="" coords="160,5,320,32"/>
+<area shape="rect" id="node4" href="$class_rifle_script.html#aadb47f65280af0d02b958b7fb2a43db7" title=" " alt="" coords="5,5,112,32"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="AmmoType" name="AmmoType">
+<area shape="rect" id="node1" title=" " alt="" coords="74,417,162,509"/>
+<area shape="rect" id="node4" href="$class_alt_projectile.html" title=" " alt="" coords="5,557,97,679"/>
+<area shape="rect" id="node5" href="$class_standard_projectile.html" title=" " alt="" coords="122,557,250,679"/>
+<area shape="rect" id="node2" href="$class_gun_part.html" title=" " alt="" coords="27,131,209,369"/>
+<area shape="rect" id="node3" title=" " alt="" coords="63,5,173,83"/>
+</map>

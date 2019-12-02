@@ -1,0 +1,7 @@
+<map id="Barrel" name="Barrel">
+<area shape="rect" id="node1" title=" " alt="" coords="164,417,235,495"/>
+<area shape="rect" id="node4" href="$class_alt_barrel.html" title=" " alt="" coords="5,543,188,723"/>
+<area shape="rect" id="node5" href="$class_standard_barrel.html" title=" " alt="" coords="212,572,395,693"/>
+<area shape="rect" id="node2" href="$class_gun_part.html" title=" " alt="" coords="108,131,291,369"/>
+<area shape="rect" id="node3" title=" " alt="" coords="144,5,255,83"/>
+</map>

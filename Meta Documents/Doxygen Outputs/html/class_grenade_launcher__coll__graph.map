@@ -1,0 +1,7 @@
+<map id="GrenadeLauncher" name="GrenadeLauncher">
+<area shape="rect" id="node1" title=" " alt="" coords="5,1023,148,1129"/>
+<area shape="rect" id="node2" href="$class_under_barrel.html" title=" " alt="" coords="31,867,122,973"/>
+<area shape="rect" id="node3" href="$class_gun_part.html" title=" " alt="" coords="25,132,208,371"/>
+<area shape="rect" id="node5" href="$class_receiver.html" title=" " alt="" coords="73,433,249,804"/>
+<area shape="rect" id="node4" title=" " alt="" coords="61,5,172,83"/>
+</map>
