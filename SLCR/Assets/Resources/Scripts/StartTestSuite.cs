@@ -21,7 +21,6 @@ public class StartTestSuite : MonoBehaviour
         button.onClick.AddListener(startTestSuite);
     }
 
-    // Update is called once per frame
     /**
     * @pre Update is called once per frame.
     * @post button interactablility is set to true if Active Scene is UnitTest, false otherwsie.

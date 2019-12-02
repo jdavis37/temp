@@ -800,7 +800,7 @@ public class PlayerController : Character
 
     /**
    * @pre: N/A.
-   * @post: Adds input to player health value as long as the player is not invulnerable
+   * @post: Adds input to player health value as long as the player is not invulnerable, healthbar is updated afterwards.
    * @param: change is value to be added to health.
    * @return: None.
    */
@@ -830,7 +830,7 @@ public class PlayerController : Character
 
     /**
    * @pre: N/A.
-   * @post: Adds input to player health value as long as the player is not invulnerable
+   * @post: Adds input to player health value as long as the player is not invulnerable, health bar is updated afterwards.
    * @param: change is value to be added to health, saving frames is time the player is invulnerable after health is changed.
    * @return: None.
    */
