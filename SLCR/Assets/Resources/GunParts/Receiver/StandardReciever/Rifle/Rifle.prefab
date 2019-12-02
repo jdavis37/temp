@@ -108,16 +108,16 @@ MonoBehaviour:
   ammountInInventory: 0
   ID: 
   NUM_PARTS: 8
-  baseDamage: 1
+  baseDamage: 17
   baseSetsPerFire: 1
   baseShotsPerSet: 1
-  basePrecision: 1
-  baseFireRate: 1
+  basePrecision: 2
+  baseFireRate: 900
   baseRecoil: 1
   baseCapacity: 30
   baseLoadedAmmoCount: 1
   baseReload: 1
-  baseVelocity: 1
+  baseVelocity: 50
   damage: 20
   setsPerFire: 1
   shotsPerSet: 1
