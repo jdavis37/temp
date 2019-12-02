@@ -18,8 +18,13 @@ public class SpawnLoot : MonoBehaviour
         spawnUnderBarrel();
         spawnHealth();
     }
-    
 
+/**
+* @pre: N/A.
+* @post: A random gun will be created and built with calculated stats.
+* @param: None.
+* @return: None.
+*/
     void spawnGun()
     {
         Object[] possible;
@@ -31,6 +36,12 @@ public class SpawnLoot : MonoBehaviour
             gun.CalculateStats();
     }
 
+/**
+* @pre: N/A.
+* @post: A reciever will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnReceiver()
     {
         Object[] possible;
@@ -39,6 +50,12 @@ public class SpawnLoot : MonoBehaviour
         gun = Instantiate((Receiver)possible[Random.Range(0, possible.Length)]);
     }
 
+/**
+* @pre: N/A.
+* @post: A barrel will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnBarrel()
     {
         Object[] possible;
@@ -47,6 +64,12 @@ public class SpawnLoot : MonoBehaviour
         barr = Instantiate((Barrel)possible[Random.Range(0, possible.Length)]);
     }
 
+/**
+* @pre: N/A.
+* @post: A caliber will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnCaliber()
     {
         Object[] possible;
@@ -55,6 +78,12 @@ public class SpawnLoot : MonoBehaviour
         cal = Instantiate((Caliber)possible[Random.Range(0, possible.Length)]);
     }
 
+/**
+* @pre: N/A.
+* @post: A cyclic modifier will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnCyclicModifier()
     {
         Object[] possible;
@@ -63,6 +92,12 @@ public class SpawnLoot : MonoBehaviour
         cyc = Instantiate((CyclicModifier)possible[Random.Range(0, possible.Length)]);
     }
 
+/**
+* @pre: N/A.
+* @post: A magazine will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnMagazine()
     {
         Object[] possible;
@@ -71,6 +106,12 @@ public class SpawnLoot : MonoBehaviour
         mag = Instantiate((Magazine)possible[Random.Range(0, possible.Length)]);
     }
 
+/**
+* @pre: N/A.
+* @post: A sight will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnSight()
     {
         Object[] possible;
@@ -79,6 +120,12 @@ public class SpawnLoot : MonoBehaviour
         sig = Instantiate((Sight)possible[Random.Range(0, possible.Length)]);
     }
 
+/**
+* @pre: N/A.
+* @post: A stock will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnStock()
     {
         Object[] possible;
@@ -87,6 +134,12 @@ public class SpawnLoot : MonoBehaviour
         sto = Instantiate((Stock)possible[Random.Range(0, possible.Length)]);
     }
 
+/**
+* @pre: N/A.
+* @post: An underbarrel will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnUnderBarrel()
     {
         Object[] possible;
@@ -95,6 +148,12 @@ public class SpawnLoot : MonoBehaviour
         undBar = Instantiate((UnderBarrel)possible[Random.Range(0, possible.Length)]);
     }
 
+/**
+* @pre: N/A.
+* @post: Health will be spawned for collection.
+* @param: None.
+* @return: None.
+*/
     void spawnHealth()
     {
         Object[] possible;
