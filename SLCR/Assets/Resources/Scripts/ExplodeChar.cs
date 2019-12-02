@@ -39,7 +39,7 @@ public class ExplodeChar : Character
     public override void Update()
     {
         myPosition = gameObject.transform.position;
-        if (health == 0)
+        if (health == 0 || Vector3.Distance(gameObject.transform.position, player.transform.position) < 1)
         {
             nav.isStopped = true;
             Invoke("Explode", 1);
@@ -55,14 +55,14 @@ public class ExplodeChar : Character
 
     public override void FixedUpdate()
     {
-        triggerExplosion = Vector3.Distance(transform.position, player.transform.position);
+        /*triggerExplosion = Vector3.Distance(transform.position, player.transform.position);
         if (triggerExplosion < explodingRadius)
         {
             if (explosionDelay > 0)
                 explosionDelay -= .1;
             else if (explosionDelay <= 0)
                 Invoke("Explode", 1);
-        }
+        }*/
     }
 
     /**
