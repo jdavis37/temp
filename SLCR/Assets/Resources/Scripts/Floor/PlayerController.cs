@@ -154,6 +154,9 @@ public class PlayerController : Character
             thirdWeapon = defaultWeapon;
         }
         PlayerIsDead = false;
+
+        playerAmmo.transform.localScale = new Vector3((float)equipedWeapon.loadedAmmoCount / (float)equipedWeapon.baseCapacity, 1, 1);
+        playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / (((float)equipedWeapon.baseCapacity / 100) * 2), 0, 0);
     }
 
     /**
@@ -272,6 +275,15 @@ public class PlayerController : Character
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 ChangeHealth(1);
+                if (equipedWeapon.loadedAmmoCount > 0)
+                    playerAmmo.transform.localScale = new Vector3((float)equipedWeapon.loadedAmmoCount / (float)equipedWeapon.baseCapacity, 1, 1);
+                else
+                    playerAmmo.transform.localScale = new Vector3(0, 1, 1);
+
+                if (equipedWeapon.capacity / 100 > 0)
+                    playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / (((float)equipedWeapon.baseCapacity / 100) * 2), 0, 0);
+                else
+                    playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / 2, 0, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.BackQuote))
@@ -282,6 +294,8 @@ public class PlayerController : Character
         else
         {
             PlayerIsDead = true;
+            playerAmmo.transform.localScale = new Vector3(0, 1, 1);
+            playerAmmo.transform.localPosition = new Vector3(0 + ((float)equipedWeapon.loadedAmmoCount - (float)equipedWeapon.baseCapacity) / 2, 0, 0);
             playerHealth.transform.localScale = new Vector3(0, 1, 1);
             playerHealth.transform.localPosition = new Vector3(0 + (health - maxHealth) / 2, 0, 0);
             DeathScreen.SetActive(true);
