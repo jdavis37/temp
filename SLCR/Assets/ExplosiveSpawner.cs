@@ -5,12 +5,10 @@ using UnityEngine;
 public class ExplosiveSpawner : MonoBehaviour
 {
     public GameObject TNT;
-    public GameObject PAT;
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("ExplosiveSpawning", 30, 10);
-        InvokeRepeating("PatrolSpawning", 10, 20);
     }
 
     // Update is called once per frame
@@ -19,8 +17,4 @@ public class ExplosiveSpawner : MonoBehaviour
         Instantiate(TNT, gameObject.transform.position, gameObject.transform.rotation);
     }
 
-    void PatrolSpawning()
-    {
-        Instantiate(PAT, gameObject.transform.position, gameObject.transform.rotation);
-    }
 }

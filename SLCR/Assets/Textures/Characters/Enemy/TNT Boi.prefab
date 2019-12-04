@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7513901294417282591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.5, y: 16.01, z: -30.42}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -171,13 +171,15 @@ MonoBehaviour:
   maxHealth: 0
   hit: 0
   speed: 10
+  rb: {fileID: 0}
+  tr: {fileID: 0}
   explodingRadius: 8
   explosionDelay: 2
   nav: {fileID: 0}
   player: {fileID: 8324309416891361334, guid: 9f557b530366bd74b88b1f567ba21720, type: 3}
-  rb: {fileID: 0}
-  tr: {fileID: 0}
   triggerExplosion: 0
+  explosionRadius: 10
+  explosionDamage: 50
 --- !u!198 &5906025484338782084
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class ExplodeChar : Character
 {
-    public float explodingRadius = 8;
-    public double explosionDelay = 2.0;
 
     public NavMeshAgent nav;
     public GameObject player;
@@ -15,7 +13,6 @@ public class ExplodeChar : Character
     public float explosionRadius = 10;
     public float explosionDamage = 50;
     private ParticleSystem explosion;
-    private Vector3 myPosition;
     private float explosiveDamage = 50;
 
     /**
@@ -24,9 +21,17 @@ public class ExplodeChar : Character
    * @param: None.
    * @return: None.
    */
+
+    private void Awake()
+    {
+        nav = GetComponent<NavMeshAgent>();
+    }
     public override void Start()
     {
+        player = GameObject.FindWithTag("Player");
         nav = this.GetComponent<NavMeshAgent>();
+        rb = this.GetComponent("Rigidbody") as Rigidbody;
+        tr = this.GetComponent("Transform") as Transform;
     }
 
     /**
@@ -38,8 +43,7 @@ public class ExplodeChar : Character
  
     public override void Update()
     {
-        myPosition = gameObject.transform.position;
-        if (health == 0 || Vector3.Distance(gameObject.transform.position, player.transform.position) < 1)
+        if (health == 0 || (player.transform.position - tr.position).magnitude <= 2)
         {
             nav.isStopped = true;
             Invoke("Explode", 1);
@@ -94,21 +98,21 @@ public class ExplodeChar : Character
     [System.Obsolete]
     public void Explode()
     {
+        Collider[] colliders = Physics.OverlapSphere(tr.position, explosionRadius);
+        float proximity;
+        float dropoff;
         //AreaDamageEnemies(player.transform.position, explodingRadius, 50);
         explosion = this.GetComponent<ParticleSystem>();
         explosion.Play();
-        Collider[] colliders = Physics.OverlapSphere(myPosition, explosionRadius);
-        float proximity;
-        float dropoff;
         for(int i = 0; i < colliders.Length; i++)
         {
-            proximity = Vector3.Distance(myPosition, colliders[i].transform.position);
+            proximity = (colliders[i].transform.position - tr.position).magnitude;
             dropoff = proximity / explosionRadius;
-            if(colliders[i].gameObject.CompareTag("Patrol"))
+            if(colliders[i].CompareTag("Patrol"))
                 colliders[i].GetComponent<PatrolController>().ChangeHealth(CalculateExplosiveDamage(50, dropoff));
-            else if(colliders[i].gameObject.CompareTag("Explosive"))
+            else if(colliders[i].CompareTag("Explosive"))
                 colliders[i].GetComponent<ExplodeChar>().ChangeHealth(CalculateExplosiveDamage(50, dropoff));
-            else if(colliders[i].gameObject.CompareTag("Player"))
+            else if(colliders[i].CompareTag("Player"))
                 colliders[i].GetComponent<PlayerController>().ChangeHealth(CalculateExplosiveDamage(50, dropoff));
         }
         Destroy(gameObject, explosion.duration);
@@ -117,7 +121,7 @@ public class ExplodeChar : Character
 
     private float CalculateExplosiveDamage(float damage, float normal)
     {
-        return (-(damage * normal));
+        return (-(damage * (1-normal)));
     }
 
 }

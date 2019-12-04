@@ -10,14 +10,8 @@ public class Floor : MonoBehaviour
     public GameObject EnemySpawn2; /// Spawn point for enemy clone 2.
     public GameObject EnemySpawn3; /// Spawn point for enemy clone 3.
     public GameObject EnemySpawn4; /// Spawn point for enemy clone 4.
-    public GameObject EnemySpawn5; /// Spawn point for enemy clone 5.
-    public GameObject EnemySpawn6; /// Spawn point for enemy clone 6.
-    private GameObject Enemy1; /// Enemy clone 1.
-    private GameObject Enemy2; /// Enemy clone 2.
-    private GameObject Enemy3; /// Enemy clone 3.
-    private GameObject Enemy4; /// Enemy clone 4.
-    private GameObject Enemy5; /// Enemy clone 5.
-    private GameObject Enemy6; /// Enemy clone 6.
+
+
     public GameObject Target; /// GameObject Target.
 
 
@@ -55,12 +49,7 @@ public class Floor : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Enemy1 = Instantiate(Enemy, EnemySpawn1.transform.position, EnemySpawn1.transform.rotation);
-            Enemy2 = Instantiate(Enemy, EnemySpawn2.transform.position, EnemySpawn2.transform.rotation);
-            Enemy3 = Instantiate(Enemy, EnemySpawn3.transform.position, EnemySpawn3.transform.rotation);
-            Enemy4 = Instantiate(Enemy, EnemySpawn4.transform.position, EnemySpawn4.transform.rotation);
-            Enemy5 = Instantiate(Enemy, EnemySpawn5.transform.position, EnemySpawn5.transform.rotation);
-            Enemy6 = Instantiate(Enemy, EnemySpawn6.transform.position, EnemySpawn6.transform.rotation);
+            InvokeRepeating("ExplosiveSpawner.Start", 0, 10);
         }
     }
 
@@ -71,7 +60,7 @@ public class Floor : MonoBehaviour
       *@param None.
       *@return None.
       */
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -82,5 +71,5 @@ public class Floor : MonoBehaviour
             Destroy(Enemy5);
             Destroy(Enemy6);
         }
-    }
+    }*/
 }
