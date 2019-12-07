@@ -23,8 +23,17 @@ public class Level1_Teleport : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+
+            FindObjectOfType<AudioManager>().Stop("safe");
+            FindObjectOfType<AudioManager>().Play("port");
+            Invoke("playAudio", 2f);
             other.transform.position = Level1_Destination.transform.position;
             other.transform.rotation = Level1_Destination.transform.rotation;
         }
     }    
+    public void playAudio()
+    {
+       
+        FindObjectOfType<AudioManager>().Play("battle1");
+    }
 }

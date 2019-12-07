@@ -46,6 +46,7 @@ public class RifleScript : StandardReceiver
                 {
                     if (loadedAmmoCount > 0)
                     {
+                        FindObjectOfType<AudioManager>().Play("shot");
                         ammo.Fire(new Vector3(0, 0, velocity), positon, angle, precision, fireDamage);
                         fireDelay = baseFireDelay;
                     }
